@@ -2,7 +2,14 @@
 
 > Quality Systems Web Application
 
-## Build Setup
+## Configuration for deploy
+# Server.js
+# Packajge.json - Script start
+# Express instalado como dependicia (No devDependencies)
+# Asegurarse de que dist no esté ignorado
+# Eso es todo ...
+
+### Build Setup
 
 ``` bash
 # install dependencies
