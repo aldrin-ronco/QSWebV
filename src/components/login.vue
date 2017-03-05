@@ -21,13 +21,13 @@
                  id="pwd"
                  v-model:value="pwd"
                  placeholder="Contraseña"
-                 class="form-control">
+                 class="form-control pwd">
         </div>
         <input type="button" name="comprobar" value="Comprobar" class="btn btn-primary" :disabled="!shouldEnableComprobar">
       </div>
     </form>
-    <pre>{{ $data | JSON }}</pre>
-    <pre>{{ host | JSON }}</pre>
+    <pre>{{ $data }}</pre>
+    <pre>{{ host }}</pre>
   </div>
 </template>
 

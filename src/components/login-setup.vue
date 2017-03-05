@@ -11,7 +11,8 @@ export default {
     this.$store.commit('SET_HOST_IP', this.$route.query.ip)
     this.$store.commit('SET_HOST_USER', this.$route.query.user)
     this.$store.commit('SET_HOST_PWD', this.$route.query.pwd)
-    this.$router.push('/login')
+    this.$store.commit('SET_HOST_ID', this.$route.query.id)
+    this.$router.push('/login') // Redirección a ruta de Login
   },
   computed: {
     ...mapGetters([

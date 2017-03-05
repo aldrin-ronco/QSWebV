@@ -9,6 +9,7 @@ Vue.use(Vuex)
 // the root, initial state object
 const state = {
   host: {
+    id: 0,
     ip: '', // IP Adress mostly
     user: '',
     pwd: ''
@@ -16,6 +17,9 @@ const state = {
 }
 
 const mutations = {
+  SET_HOST_ID (state, id) {
+    state.host.id = id
+  },
   SET_HOST_IP (state, ip) {
     state.host.ip = ip
   },
