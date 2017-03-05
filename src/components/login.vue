@@ -66,7 +66,7 @@ export default {
   },
   methods: {
     logginCheck () {
-      this.axios_instance.get(`${appConfig.baseUrl}/login-check`)
+      this.axios_instance.get(`${appConfig.baseUrlWebApi}/login-check`)
       .then(function (response) {
         response.user_profile.databases.forEach(function (db) {
           this.databases.push({ text: db.DataBaseName, value: db.DataBaseName })
