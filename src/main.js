@@ -4,6 +4,8 @@
 import Vue from 'vue'
 import App from './App'
 import router from './router'
+import 'bootstrap/dist/css/bootstrap.css'
+import 'bootstrap/dist/css/bootstrap-theme.css'
 
 // import axios from 'axios'
 
