@@ -69,6 +69,7 @@ export default {
       //     'host_id': 45
       //   }
       // })
+      console.log(this.axios_instance)
       this.axios_instance.get('https://qsweb-api.herokuapp.com/cost_centers')
       .then(function (response) {
         console.log(response)
