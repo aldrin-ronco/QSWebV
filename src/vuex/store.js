@@ -50,12 +50,19 @@ const getters = {
     return state.host
   },
   axios_instance (state) {
-    state.axios_instance.headers.user = state.host.user
-    state.axios_instance.headers.pwd = state.host.pwd
-    state.axios_instance.headers.server_ip = state.host.ip
-    state.axios_instance.headers.database = 'BD_SEGURIDAD'
-    state.axios_instance.headers.host_id = state.host.id
-    return state.axios_instance
+    return axios.create({
+      baseUrl: appConfig.baseUrl,
+      timeout: 2000,
+      headers: {
+        'user': state.host.user,
+        'pwd': state.host.pwd,
+        'database': 'BD_SEGURIDAD',
+        'server_ip': state.host.ip,
+        'port': 1433,
+        'models': 'config',
+        'host_id': state.host.id
+      }
+    })
   }
 }
 
