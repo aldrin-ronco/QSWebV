@@ -23,7 +23,14 @@
                  placeholder="Contraseña"
                  class="form-control pwd">
         </div>
-        <input type="button" name="comprobar" value="Comprobar" class="btn btn-primary" :disabled="!shouldEnableComprobar" @click="sendHeaders">
+        <div class="form-group">
+          <select v-model="selected">
+            <option v-for="db in databases" v-bind:value="db.value">
+                {{ bd }}
+            </option>
+          </select>
+        </div>
+        <input type="button" name="comprobar" value="Comprobar" class="btn btn-primary" :disabled="!shouldEnableComprobar" @click="logginCheck">
       </div>
     </form>
     <pre>{{ $data }}</pre>
@@ -33,12 +40,15 @@
 
 <script>
 import { mapGetters } from 'vuex'
+import appConfig from '../../app.config'
 // import axios from 'axios'
 export default {
   data () {
     return {
       userName: '',
-      pwd: ''
+      pwd: '',
+      selected: '',
+      databases: []
     }
   },
   computed: {
@@ -55,24 +65,14 @@ export default {
     }
   },
   methods: {
-    sendHeaders () {
-      // let instance = axios.create({
-      //   baseUrl: 'http://localhost:3000/',
-      //   timeout: 2000,
-      //   headers: {
-      //     'user': 'sa',
-      //     'pwd': 'Qu4l1ty',
-      //     'database': 'BD_SEGURIDAD',
-      //     'server_ip': '190.1.149.122',
-      //     'port': 1433,
-      //     'models': 'config',
-      //     'host_id': 45
-      //   }
-      // })
-      console.log(this.axios_instance)
-      this.axios_instance.get('https://qsweb-api.herokuapp.com/cost_centers')
+    logginCheck () {
+      this.axios_instance.get(`${appConfig.baseUrl}/login-check`)
       .then(function (response) {
-        console.log(response)
+        response.user_profile.databases.forEach(function (db) {
+          this.databases.push({ text: db.DataBaseName, value: db.DataBaseName })
+        })
+      }, function (error) {
+        console.log(error)
       })
     }
   }
