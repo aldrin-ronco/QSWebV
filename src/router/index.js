@@ -1,13 +1,13 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import Hello from '@/components/Hello'
-import loginSeup from '@/components/login-setup'
+import loginseup from '@/components/login-setup'
 
 Vue.use(Router)
 
 const routes = [
   { path: '/', name: 'Hello', component: Hello },
-  { path: '/loginSetup', name: 'loginSetup', component: loginSeup }
+  { path: '/loginsetup', name: 'loginsetup', component: loginseup }
 ]
 
 export default new Router({
