@@ -23,7 +23,7 @@
                  placeholder="Contraseña"
                  class="form-control pwd">
         </div>
-        <input type="button" name="comprobar" value="Comprobar" class="btn btn-primary" :disabled="!shouldEnableComprobar">
+        <input type="button" name="comprobar" value="Comprobar" class="btn btn-primary" :disabled="!shouldEnableComprobar" @click="sendHeaders">
       </div>
     </form>
     <pre>{{ $data }}</pre>
@@ -33,6 +33,7 @@
 
 <script>
 import { mapGetters } from 'vuex'
+// import axios from 'axios'
 export default {
   data () {
     return {
@@ -42,7 +43,8 @@ export default {
   },
   computed: {
     ...mapGetters([
-      'host'
+      'host',
+      'axios_instance'
     ]),
     shouldEnableComprobar () {
       if (this.userName.trim() && this.pwd.trim()) {
@@ -50,6 +52,27 @@ export default {
       } else {
         return false
       }
+    }
+  },
+  methods: {
+    sendHeaders () {
+      // let instance = axios.create({
+      //   baseUrl: 'http://localhost:3000/',
+      //   timeout: 2000,
+      //   headers: {
+      //     'user': 'sa',
+      //     'pwd': 'Qu4l1ty',
+      //     'database': 'BD_SEGURIDAD',
+      //     'server_ip': '190.1.149.122',
+      //     'port': 1433,
+      //     'models': 'config',
+      //     'host_id': 45
+      //   }
+      // })
+      this.axios_instance.get('https://qsweb-api.herokuapp.com/cost_centers')
+      .then(function (response) {
+        console.log(response)
+      })
     }
   }
 }

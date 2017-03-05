@@ -2,9 +2,10 @@
 
 import Vue from 'vue'
 import Vuex from 'vuex'
+import appConfig from '../../app.config'
+import axios from 'axios'
 
 Vue.use(Vuex)
-// import appConfig from '../../app.config'
 
 // the root, initial state object
 const state = {
@@ -13,7 +14,20 @@ const state = {
     ip: '', // IP Adress mostly
     user: '',
     pwd: ''
-  }
+  },
+  axios_instance: axios.create({
+    baseUrl: appConfig.baseUrl,
+    timeout: 2000,
+    headers: {
+      'user': '',
+      'pwd': '',
+      'database': '',
+      'server_ip': '',
+      'port': 1433,
+      'models': 'config',
+      'host_id': 0
+    }
+  })
 }
 
 const mutations = {
@@ -34,6 +48,14 @@ const mutations = {
 const getters = {
   host (state) {
     return state.host
+  },
+  axios_instance (state) {
+    state.axios_instance.headers.user = state.host.user
+    state.axios_instance.headers.pwd = state.host.pwd
+    state.axios_instance.headers.server_ip = state.host.ip
+    state.axios_instance.headers.database = 'BD_SEGURIDAD'
+    state.axios_instance.headers.host_id = state.host.id
+    return state.axios_instance
   }
 }
 
