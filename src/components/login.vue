@@ -12,7 +12,8 @@
                  id="userName"
                  v-model:value="userName"
                  placeholder="Nombre de Usuario"
-                 class="form-control">
+                 class="form-control"
+                 v-focus>
         </div>
         <div class="form-group">
           <label for="pwd">Contraseña</label>
