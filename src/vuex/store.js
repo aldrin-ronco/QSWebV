@@ -56,7 +56,7 @@ const getters = {
       headers: {
         'user': state.host.user,
         'pwd': state.host.pwd,
-        'database': 'BD_SEGURIDAD',
+        'database': 'BD_COMERCIAL',
         'server_ip': state.host.ip,
         'port': 1433,
         'models': 'config',
