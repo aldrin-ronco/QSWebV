@@ -68,7 +68,7 @@ export default {
     logginCheck () {
       let vm = this
       console.log('vm', vm)
-      this.databases.show({ text: 'test', value: 'T' })
+      this.databases.push({ text: 'test', value: 'T' })
       this.axios_instance.get(`${appConfig.baseUrlWebApi}/login-check`)
       .then(function (response) {
         console.log('response', response)
