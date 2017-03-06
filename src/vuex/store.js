@@ -16,7 +16,7 @@ const state = {
     pwd: ''
   },
   axios_instance: axios.create({
-    baseUrl: appConfig.baseUrl,
+    baseUrl: appConfig.baseUrlWebApi,
     headers: {
       'user': '',
       'pwd': '',
