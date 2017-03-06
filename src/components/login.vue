@@ -23,8 +23,8 @@
                  placeholder="Contraseña"
                  class="form-control pwd">
         </div>
-        <div class="form-group">
-          <select v-model="selected">
+        <div class="form-group" v-show="selected">
+          <select v-model="selected" class="form-control">
             <option v-for="db in databases" v-bind:value="db.value">
                 {{ db.text }}
             </option>
