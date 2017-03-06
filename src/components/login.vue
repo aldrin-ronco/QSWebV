@@ -26,7 +26,7 @@
         <div class="form-group">
           <select v-model="selected">
             <option v-for="db in databases" v-bind:value="db.value">
-                {{ db.DataBaseAlias }}
+                {{ db.text }}
             </option>
           </select>
         </div>
@@ -67,11 +67,8 @@ export default {
   methods: {
     logginCheck () {
       let vm = this
-      console.log('vm', vm)
-      this.databases.push({ text: 'test', value: 'T' })
       this.axios_instance.get(`${appConfig.baseUrlWebApi}/login-check`)
       .then(function (response) {
-        console.log('response', response)
         response.data.user_profile.databases.forEach(function (db) {
           vm.databases.push({ text: db.DataBaseAlias, value: db.DataBaseName })
         })
