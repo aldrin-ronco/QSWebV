@@ -67,9 +67,10 @@ export default {
   methods: {
     logginCheck () {
       let vm = this
+      console.log('vm', vm)
       this.axios_instance.get(`${appConfig.baseUrlWebApi}/login-check`)
       .then(function (response) {
-        console.log(response)
+        console.log('response', response)
         response.user_profile.databases.forEach(function (db) {
           vm.databases.push({ text: db.DataBaseName, value: db.DataBaseName })
         })
