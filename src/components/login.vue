@@ -86,7 +86,7 @@ export default {
         response.data.user_profile.databases.forEach(function (db) {
           vm.databases.push({ text: db.DataBaseAlias, value: db.DataBaseName })
         })
-        this.selected = response.data.user_profile.databases[0].DataBaseName
+        vm.selected = response.data.user_profile.databases[0].DataBaseName
       }, function (error) {
         console.log(error)
       })
