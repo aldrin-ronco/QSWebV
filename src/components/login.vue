@@ -26,7 +26,7 @@
         <div class="form-group">
           <select v-model="selected">
             <option v-for="db in databases" v-bind:value="db.value">
-                {{ bd }}
+                {{ db.DataBaseAlias }}
             </option>
           </select>
         </div>
@@ -73,7 +73,7 @@ export default {
       .then(function (response) {
         console.log('response', response)
         response.data.user_profile.databases.forEach(function (db) {
-          vm.databases.push({ text: db.DataBaseName, value: db.DataBaseName })
+          vm.databases.push({ text: db.DataBaseAlias, value: db.DataBaseName })
         })
       }, function (error) {
         console.log(error)
