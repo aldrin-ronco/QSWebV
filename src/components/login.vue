@@ -65,7 +65,7 @@ export default {
       }
     },
     showCompany () {
-      if (this.selected.trim()) {
+      if (this.databases.length) {
         return true
       } else {
         return false
