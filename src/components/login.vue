@@ -39,9 +39,10 @@
                @click="logginCheck">
       </div>
     </form>
+    <!--
     <pre>{{ $data }}</pre>
     <pre>{{ host }}</pre>
-    <pre>{{ showCompany }}</pre>
+    <pre>{{ showCompany }}</pre> -->
   </div>
 </template>
 
@@ -100,7 +101,7 @@ img {
   display: block;
   margin: auto;
   width: 400px;
-  margin-top: 0px;
+  margin-top: 60px;
 }
 h2 {
   margin-top: 10px;
