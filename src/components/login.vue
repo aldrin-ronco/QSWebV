@@ -23,7 +23,7 @@
                  placeholder="Contraseña"
                  class="form-control pwd">
         </div>
-        <div class="form-group" v-show="selected">
+        <div class="form-group" v-show="showCompany">
           <select v-model="selected" class="form-control">
             <option v-for="db in databases" v-bind:value="db.value">
                 {{ db.text }}
@@ -58,6 +58,13 @@ export default {
     ]),
     shouldEnableComprobar () {
       if (this.userName.trim() && this.pwd.trim()) {
+        return true
+      } else {
+        return false
+      }
+    },
+    showCompany () {
+      if (this.selected.trim()) {
         return true
       } else {
         return false
