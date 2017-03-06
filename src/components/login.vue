@@ -35,6 +35,7 @@
     </form>
     <pre>{{ $data }}</pre>
     <pre>{{ host }}</pre>
+    <pre>{{ showCompany }}</pre>
   </div>
 </template>
 
