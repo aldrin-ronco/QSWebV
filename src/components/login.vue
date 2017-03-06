@@ -24,13 +24,19 @@
                  class="form-control pwd">
         </div>
         <div class="form-group" v-show="showCompany">
-          <select v-model="selected" class="form-control">
+          <label for="dbases">Empresa</label>
+          <select v-model="selected" class="form-control" id="dbases">
             <option v-for="db in databases" v-bind:value="db.value">
                 {{ db.text }}
             </option>
           </select>
         </div>
-        <input type="button" name="comprobar" value="Comprobar" class="btn btn-primary" :disabled="!shouldEnableComprobar" @click="logginCheck">
+        <input type="button"
+               name="comprobar"
+               :value="showCompany ? 'Iniciar Sesión' : 'Comprobar'"
+               class="btn btn-primary"
+               :disabled="!shouldEnableComprobar"
+               @click="logginCheck">
       </div>
     </form>
     <pre>{{ $data }}</pre>
@@ -80,6 +86,7 @@ export default {
         response.data.user_profile.databases.forEach(function (db) {
           vm.databases.push({ text: db.DataBaseAlias, value: db.DataBaseName })
         })
+        this.selected = response.data.user_profile.databases[0].DataBaseName
       }, function (error) {
         console.log(error)
       })
