@@ -17,6 +17,7 @@ const state = {
   },
   axios_instance: axios.create({
     baseUrl: appConfig.baseUrlWebApi,
+    timeout: 10000, // 10 Seconds
     headers: {
       'user': '',
       'pwd': '',
