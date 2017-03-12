@@ -82,13 +82,13 @@ export default {
   methods: {
     logginCheck () {
       let vm = this
-      this.axios_instance.get(`${appConfig.baseUrlWebApi}/login-check`,{timeout: 10000})
+      this.axios_instance.get(`${appConfig.baseUrlWebApi}/login-check`, {timeout: 10000})
       .then(function (response) {
         response.data.user_profile.databases.forEach(function (db) {
           vm.databases.push({ text: db.DataBaseAlias, value: db.DataBaseName })
         })
         // Si hay bases de datos configuradas para este usuario
-        if (response.data.user_profile.databases.length>0) {
+        if (response.data.user_profile.databases.length > 0) {
           vm.selected = response.data.user_profile.databases[0].DataBaseName
         }
       }, function (error) {
