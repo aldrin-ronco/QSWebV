@@ -1,6 +1,6 @@
 <template>
   <div>
-    <img src="static/img/logo.png" alt="">
+    <img :src="host.companyLogo" alt="">
     <h2><b>Quality WEB</b>
       <small>Inicia Sesión</small>
     </h2>

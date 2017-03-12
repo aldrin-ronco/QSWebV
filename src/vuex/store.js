@@ -13,11 +13,11 @@ const state = {
     id: 0,
     ip: '', // IP Adress mostly
     user: '',
-    pwd: ''
+    pwd: '',
+    companyLogo: ''
   },
   axios_instance: axios.create({
     baseUrl: appConfig.baseUrlWebApi,
-    timeout: 10000, // 10 Seconds
     headers: {
       'user': '',
       'pwd': '',
@@ -42,6 +42,9 @@ const mutations = {
   },
   SET_HOST_PWD (state, pwd) {
     state.host.pwd = pwd
+  },
+  SET_COMPANY_LOGO (state, location) {
+    state.host.companyLogo = location
   }
 }
 
