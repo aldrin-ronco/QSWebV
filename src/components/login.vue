@@ -1,6 +1,6 @@
 <template>
   <div>
-    <img :src="host.companyLogo" alt="">
+    <img :src="host.companyLogo" alt="" class="logo">
     <h2><b>Quality WEB</b>
       <small>Inicia Sesión</small>
     </h2>
@@ -103,11 +103,11 @@ export default {
 img {
   display: block;
   margin: auto;
-  width: 400px;
+  width: 350px;
   margin-top: 60px;
 }
 h2 {
-  margin-top: 10px;
+  margin-top: 40px;
   text-align: center;
 }
 .container {
