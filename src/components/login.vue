@@ -1,4 +1,4 @@
-<template>
+<template>  
   <div>
     <img src="static/img/logo.png" alt="">
     <h2><b>Quality WEB</b>
