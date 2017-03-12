@@ -103,7 +103,8 @@ export default {
 img {
   display: block;
   margin: auto;
-  width: 350px;
+  max-width: 300px;
+  max-height: 300px;
   margin-top: 60px;
 }
 h2 {
