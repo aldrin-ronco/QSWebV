@@ -79,15 +79,12 @@ export default {
       } else {
         return false
       }
-    },
-    btnStatus () {
-      return 'Comprobando'
     }
   },
   methods: {
     logginCheck () {
       let vm = this
-      console.log(this)
+      console.log(this.$data)
       // vm.isSubmited = true
       vm.axios_instance.get(`${appConfig.baseUrlWebApi}/login-check`, {timeout: 10000})
       .then(function (response) {
