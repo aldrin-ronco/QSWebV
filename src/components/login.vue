@@ -35,7 +35,7 @@
                 class="btn btn-primary"
                 :disabled="!shouldEnableComprobar"
                 @click="logginCheck($event)">
-                <span :class="{ 'glyphicon': isSubmited, 'glyphicon-refresh': isSubmited, spinning: isSubmited }"></span>
+                <span :class="{ 'glyphicon': isSubmited && !isSent, 'glyphicon-refresh': isSubmited && !isSent, spinning: isSubmited && !isSent }"></span>
                 {{ buttonStatusMsg }}
         </button>
       </div>
