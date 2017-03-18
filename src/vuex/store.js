@@ -21,8 +21,8 @@ const state = {
     headers: {
       'user': '',
       'pwd': '',
-      'database': '',
       'server_ip': '',
+      'database': '',
       'port': 1433,
       'models': 'config',
       'host_id': 0
@@ -55,7 +55,6 @@ const getters = {
   axios_instance (state) {
     return axios.create({
       baseUrl: appConfig.baseUrl,
-      timeout: 2000,
       headers: {
         'user': state.host.user,
         'pwd': state.host.pwd,

@@ -31,10 +31,10 @@
             </option>
           </select>
         </div>
-        <button name="btnComprobar"
+        <button
                class="btn btn-primary"
                :disabled="!shouldEnableComprobar"
-               @click="logginCheck">
+               @click="logginCheck($event)">
                Mensaje Estatico
         </button>
       </div>
@@ -48,7 +48,6 @@
 <script>
 import { mapGetters } from 'vuex'
 import appConfig from '../../app.config'
-// import axios from 'axios'
 export default {
   data () {
     return {
@@ -82,7 +81,8 @@ export default {
     }
   },
   methods: {
-    logginCheck () {
+    logginCheck (evt) {
+      evt.preventDefault()
       let vm = this
       console.log(this.statusMsg)
       // vm.isSubmited = true
