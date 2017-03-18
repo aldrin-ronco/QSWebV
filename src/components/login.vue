@@ -35,7 +35,7 @@
                class="btn btn-primary"
                :disabled="!shouldEnableComprobar"
                @click="logginCheck($event)">
-               Mensaje Estatico
+               {{ buttonStatusMsg }}
         </button>
       </div>
     </form>
@@ -78,24 +78,33 @@ export default {
       } else {
         return false
       }
+    },
+    buttonStatusMsg () {
+      if (this.isSubmited && !this.isSent) {
+        return 'Comprobando'
+      } else if (this.isSent) {
+        return 'Iniciar Sesión'
+      } else {
+        return 'Comprobar'
+      }
     }
   },
   methods: {
     logginCheck (evt) {
+      // Como el lamado viene de un button, tuve que hacer esto para evitar el redireccionamiento, casi quedo calvo
       evt.preventDefault()
-      let vm = this
-      console.log(this.statusMsg)
-      // vm.isSubmited = true
+      let vm = this // Guardamos la instancia antes de que se pierda
+
+      vm.isSubmited = true // Ha Sido presionado el botón de comprobar, Inicia la espera de respuesta
       vm.axios_instance.get(`${appConfig.baseUrlWebApi}/login-check`, {timeout: 10000})
       .then(function (response) {
-        console.log(response)
         response.data.user_profile.databases.forEach(function (db) {
-          vm.databases.push({ text: db.DataBaseAlias, value: db.DataBaseName })
+          vm.databases.push({ text: db.DataBaseAlias, value: db.DataBaseName }) // Colocamos todas las bases de datos de este usuario en el array
         })
-        // vm.isSent = true
+        vm.isSent = true // El Servidor ha respondido, termina la espera
         // Si hay bases de datos configuradas para este usuario
         if (response.data.user_profile.databases.length > 0) {
-          vm.selected = response.data.user_profile.databases[0].DataBaseName
+          vm.selected = response.data.user_profile.databases[0].DataBaseName // Seleccionamos la primera base de datos de la lista para que se muestre en el desplegable
         }
       }, function (error) {
         console.log(error)
