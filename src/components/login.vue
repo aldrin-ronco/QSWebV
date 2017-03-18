@@ -35,9 +35,8 @@
                 class="btn btn-primary"
                 :disabled="!shouldEnableComprobar"
                 @click="logginCheck($event)">
-                <span class="iSpinner" v-bind:class="{ glyphicon: isSubmited, 'glyphicon-refresh': isSubmited, spinning: isSubmited }"
-                  {{ buttonStatusMsg }}
-                </span>
+                <span :class="{ 'glyphicon': isSubmited, 'glyphicon-refresh': isSubmited, spinning: isSubmited }"></span>
+                {{ buttonStatusMsg }}
         </button>
       </div>
     </form>
