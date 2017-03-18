@@ -31,15 +31,16 @@
             </option>
           </select>
         </div>
-        <input type="button"
-               name="comprobar"
-               :value="showCompany ? 'Iniciar Sesión' : 'Comprobar'"
+        <button name="comprobar"
                class="btn btn-primary"
                :disabled="!shouldEnableComprobar"
                @click="logginCheck">
+               <span v-bind:class="{ glyphicon: isSubmited, 'glyphicon-refresh': isSubmited, spinning: isSubmited }"></span>
+               {{ btnStatus }}
+        </button>
       </div>
     </form>
-    <!--
+    <!--glyphicon glyphicon-refresh spinning
     <pre>{{ $data }}</pre>
     <pre>{{ host }}</pre>
     <pre>{{ showCompany }}</pre> -->
@@ -56,7 +57,9 @@ export default {
       userName: '',
       pwd: '',
       selected: '',
-      databases: []
+      databases: [],
+      isSubmited: false,
+      isSent: false
     }
   },
   computed: {
@@ -77,16 +80,27 @@ export default {
       } else {
         return false
       }
+    },
+    btnStatus () {
+      if (this.isSubmited && !this.isSent) {
+        return 'Comprobando'
+      } else if (this.isSent) {
+        return 'Iniciar Sesión'
+      } else {
+        return 'Comprobar'
+      }
     }
   },
   methods: {
     logginCheck () {
       let vm = this
+      vm.isSubmited = true
       this.axios_instance.get(`${appConfig.baseUrlWebApi}/login-check`, {timeout: 10000})
       .then(function (response) {
         response.data.user_profile.databases.forEach(function (db) {
           vm.databases.push({ text: db.DataBaseAlias, value: db.DataBaseName })
         })
+        vm.isSent = true
         // Si hay bases de datos configuradas para este usuario
         if (response.data.user_profile.databases.length > 0) {
           vm.selected = response.data.user_profile.databases[0].DataBaseName
@@ -118,4 +132,16 @@ h2 {
 .btn-primary {
   width: 370px;
 }
+.glyphicon.spinning {
+    animation: spin 1s infinite linear;
+    -webkit-animation: spin2 1s infinite linear;
+}
+@keyframes spin {
+    from { transform: scale(1) rotate(0deg); }
+    to { transform: scale(1) rotate(360deg); }
+}
+@-webkit-keyframes spin2 {
+    from { -webkit-transform: rotate(0deg); }
+    to { -webkit-transform: rotate(360deg); }
+  }
 </style>
