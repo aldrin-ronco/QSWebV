@@ -31,12 +31,12 @@
             </option>
           </select>
         </div>
-        <button name="comprobar"
+        <button name="btnComprobar"
                class="btn btn-primary"
                :disabled="!shouldEnableComprobar"
                @click="logginCheck">
                <span class="btnSpinner"></span>
-               {{ btnStatus }}
+               {{ statusMsg }}
         </button>
       </div>
     </form>
@@ -60,7 +60,8 @@ export default {
       selected: '',
       databases: [],
       isSubmited: false,
-      isSent: false
+      isSent: false,
+      statusMsg: 'Comprobando'
     }
   },
   computed: {
