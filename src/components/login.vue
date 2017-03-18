@@ -35,12 +35,13 @@
                class="btn btn-primary"
                :disabled="!shouldEnableComprobar"
                @click="logginCheck">
-               <span class="btnSpinner" v-bind:class="{ 'glyphicon': isSubmited, 'glyphicon-refresh': isSubmited, 'spinning': isSubmited }"></span>
+               <span class="btnSpinner"></span>
                {{ btnStatus }}
         </button>
       </div>
     </form>
     <!--glyphicon glyphicon-refresh spinning
+    v-bind:class="{ 'glyphicon': isSubmited, 'glyphicon-refresh': isSubmited, 'spinning': isSubmited }"
     <pre>{{ $data }}</pre>
     <pre>{{ host }}</pre>
     <pre>{{ showCompany }}</pre> -->
