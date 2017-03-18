@@ -36,7 +36,7 @@
                :disabled="!shouldEnableComprobar"
                @click="logginCheck">
                <span class="btnSpinner"></span>
-               {{ statusMsg }}
+               Mensaje Estatico
         </button>
       </div>
     </form>
