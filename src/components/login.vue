@@ -31,17 +31,18 @@
             </option>
           </select>
         </div>
-        <button
-               class="btn btn-primary"
-               :disabled="!shouldEnableComprobar"
-               @click="logginCheck($event)">
-               {{ buttonStatusMsg }}
+        <button name="btnComprobar"
+                class="btn btn-primary"
+                :disabled="!shouldEnableComprobar"
+                @click="logginCheck($event)">
+                <span v-bind:class="{ 'glyphicon': isSubmited, 'glyphicon-refresh': isSubmited, 'spinning': isSubmited }"</span>
+                {{ buttonStatusMsg }}
         </button>
       </div>
     </form>
-    <pre>{{ $data }}</pre>
+    <!-- <pre>{{ $data }}</pre>
     <pre>{{ host }}</pre>
-    <pre>{{ showCompany }}</pre>
+    <pre>{{ showCompany }}</pre> -->
   </div>
 </template>
 
@@ -56,8 +57,7 @@ export default {
       selected: '',
       databases: [],
       isSubmited: false,
-      isSent: false,
-      statusMsg: 'Comprobando'
+      isSent: false
     }
   },
   computed: {
@@ -66,7 +66,9 @@ export default {
       'axios_instance'
     ]),
     shouldEnableComprobar () {
-      if (this.userName.trim() && this.pwd.trim()) {
+      if (this.isSubmited && !this.isSent) { // Si han dado clieck en comprobar pero aun no ha respondido el servidor
+        return false
+      } else if (this.userName.trim() && this.pwd.trim()) {
         return true
       } else {
         return false
