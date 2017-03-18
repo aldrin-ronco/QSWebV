@@ -95,8 +95,12 @@ export default {
     logginCheck (evt) {
       // Como el lamado viene de un button, tuve que hacer esto para evitar el redireccionamiento, casi quedo calvo
       evt.preventDefault()
-      let vm = this // Guardamos la instancia antes de que se pierda
 
+      if (this.isSent) { // Iniciar Sessión
+        return alert('Aqui va el dash board !')
+      }
+
+      let vm = this // Guardamos la instancia antes de que se pierda
       vm.isSubmited = true // Ha Sido presionado el botón de comprobar, Inicia la espera de respuesta
       vm.axios_instance.get(`${appConfig.baseUrlWebApi}/login-check`, {timeout: 10000})
       .then(function (response) {
