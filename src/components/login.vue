@@ -102,7 +102,7 @@ export default {
 
       let vm = this // Guardamos la instancia antes de que se pierda
       vm.isSubmited = true // Ha Sido presionado el botón de comprobar, Inicia la espera de respuesta
-      vm.axios_instance.get(`${appConfig.baseUrlWebApi}/login-check`, {timeout: 10000})
+      vm.axios_instance.get(`${appConfig.baseUrlWebApi}/login-check`, {timeout: 20000}) // timeout de 20 Segundos, haber si da resultado
       .then(function (response) {
         response.data.user_profile.databases.forEach(function (db) {
           vm.databases.push({ text: db.DataBaseAlias, value: db.DataBaseName }) // Colocamos todas las bases de datos de este usuario en el array
