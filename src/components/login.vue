@@ -39,12 +39,9 @@
         </button>
       </div>
     </form>
-    <!--glyphicon glyphicon-refresh spinning
-    <span class="glyphicon glyphicon-refresh spinning"></span>
-    v-bind:class="{ 'glyphicon': isSubmited, 'glyphicon-refresh': isSubmited, 'spinning': isSubmited }"
     <pre>{{ $data }}</pre>
     <pre>{{ host }}</pre>
-    <pre>{{ showCompany }}</pre> -->
+    <pre>{{ showCompany }}</pre>
   </div>
 </template>
 
@@ -85,13 +82,6 @@ export default {
     },
     btnStatus () {
       return 'Comprobando'
-      // if (this.isSubmited && !this.isSent) {
-      //   return 'Comprobando'
-      // } else if (this.isSent) {
-      //   return 'Iniciar Sesión'
-      // } else {
-      //   return 'Comprobar'
-      // }
     }
   },
   methods: {
