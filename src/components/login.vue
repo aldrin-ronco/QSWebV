@@ -94,7 +94,7 @@ export default {
   methods: {
     logginCheck () {
       let vm = this
-      vm.isSubmited = true
+      // vm.isSubmited = true
       this.axios_instance.get(`${appConfig.baseUrlWebApi}/login-check`, {timeout: 10000})
       .then(function (response) {
         response.data.user_profile.databases.forEach(function (db) {
