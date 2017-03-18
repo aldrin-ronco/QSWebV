@@ -100,7 +100,7 @@ export default {
         response.data.user_profile.databases.forEach(function (db) {
           vm.databases.push({ text: db.DataBaseAlias, value: db.DataBaseName })
         })
-        vm.isSent = true
+        // vm.isSent = true
         // Si hay bases de datos configuradas para este usuario
         if (response.data.user_profile.databases.length > 0) {
           vm.selected = response.data.user_profile.databases[0].DataBaseName
