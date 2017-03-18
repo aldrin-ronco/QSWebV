@@ -82,13 +82,14 @@ export default {
       }
     },
     btnStatus () {
-      if (this.isSubmited && !this.isSent) {
-        return 'Comprobando'
-      } else if (this.isSent) {
-        return 'Iniciar Sesión'
-      } else {
-        return 'Comprobar'
-      }
+      return 'Comprobando'
+      // if (this.isSubmited && !this.isSent) {
+      //   return 'Comprobando'
+      // } else if (this.isSent) {
+      //   return 'Iniciar Sesión'
+      // } else {
+      //   return 'Comprobar'
+      // }
     }
   },
   methods: {
