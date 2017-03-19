@@ -11,6 +11,7 @@
           <input type="text"
                  id="userName"
                  v-model:value="userName"
+                 style="text-transform: uppercase"
                  placeholder="Nombre de Usuario"
                  class="form-control"
                  v-focus>

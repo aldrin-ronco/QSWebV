@@ -9,6 +9,12 @@
 # Asegurarse de que dist no esté ignorado
 # Eso es todo ...
 
+## pm2 commnads
+#  pm2 start app.js
+#  pm2 monit
+#  pm2 list
+#  pm2 logs
+
 ### Build Setup
 
 ``` bash
