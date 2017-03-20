@@ -28,7 +28,7 @@
         </div>
         <div class="form-group" v-show="showCompany">
           <label for="dbases">Empresa</label>
-          <select v-model="axios_config.database" class="form-control" id="dbases">
+          <select v-model="axios_config.headers.database" class="form-control" id="dbases">
             <option v-for="db in databases" v-bind:value="db.value">
                 {{ db.text }}
             </option>
