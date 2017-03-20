@@ -1,6 +1,6 @@
 <template>
   <div>
-    <img :src="host.companyLogo" alt="" class="logo">
+    <img :src="company.logo" alt="" class="logo">
     <h2><b>Quality WEB</b>
       <small>Inicia Sesión</small>
     </h2>
@@ -10,7 +10,7 @@
           <label for="userName">Nombre de Usuario</label>
           <input type="text"
                  id="userName"
-                 v-model:value="axios_config.headers.user.user_name"
+                 v-model:value="axios_config.headers.user.name"
                  @input="setUserName($event)"
                  style="text-transform: uppercase"
                  placeholder="Nombre de Usuario"
@@ -21,7 +21,7 @@
           <label for="pwd">Contraseña</label>
           <input type="password"
                  id="pwd"
-                 v-model:value="axios_config.headers.user.user_pwd"
+                 v-model:value="axios_config.headers.user.pwd"
                  @input="setUserPwd($event)"
                  placeholder="Contraseña"
                  class="form-control pwd">
@@ -62,15 +62,17 @@ export default {
   },
   computed: {
     ...mapGetters([
-      'host',
+      'company',
       'axios_config',
       'axios_instance'
     ]),
     shouldEnableComprobar () {
       let vm = this
+      // console.log(vm.axios_config.headers.server.user)
+      // console.log(vm.axios_config.headers)
       if (this.isSubmited && !this.isSent) { // Si han dado clieck en comprobar pero aun no ha respondido el servidor
         return false
-      } else if (vm.axios_config.headers.user.user_name.trim() && vm.axios_config.headers.user.user_pwd.trim()) {
+      } else if (vm.axios_config.headers.user.name.trim() && vm.axios_config.headers.user.pwd.trim()) {
         return true
       } else {
         return false
