@@ -15,44 +15,40 @@ const state = {
   axios_config: {
     baseUrl: appConfig.baseUrlWebApi,
     headers: {
-      server: {
-        'user': '', // Usuario para conectar con la Base de Datos
-        'pwd': '', // Contraseña para conectar con la base de datos
-        'ip': '', // Dirección IP del servidor
-        'database': '', // Base de datos a la que se va a conectar
-        'port': 1433, // Puerto
-        'models': 'config', // Directorio que se va a cargar
-        'id': 0 // id del host
-      },
-      user: {
-        name: '', // Usuario de inicio sesión en Quality
-        pwd: '' // Password de Inicio sessión del usuario
-      }
+      host_user: '', // Usuario para conectar con la Base de Datos
+      host_pwd: '', // Contraseña para conectar con la base de datos
+      host_ip: '', // Dirección IP del servidor
+      host_port: 1433, // Puerto
+      host_id: 0, // id del host
+      user_name: '', // Usuario de inicio sesión en Quality
+      user_pwd: '', // Password de Inicio sessión del usuario
+      models: 'config', // Directorio que se va a cargar
+      database: '' // Base de datos a la que se va a conectar
     }
   }
 }
 
 const mutations = {
-  SET_SERVER_ID (state, id) {
-    state.axios_config.headers.server.id = id
+  SET_HOST_ID (state, id) {
+    state.axios_config.headers.host_id = id
   },
-  SET_SERVER_IP (state, ip) {
-    state.axios_config.headers.server.ip = ip
+  SET_HOST_IP (state, ip) {
+    state.axios_config.headers.host_ip = ip
   },
-  SET_SERVER_USER (state, user) {
-    state.axios_config.headers.server.user = user
+  SET_HOST_USER (state, user) {
+    state.axios_config.headers.host_user = user
   },
-  SET_SERVER_PWD (state, pwd) {
-    state.axios_config.headers.server.pwd = pwd
+  SET_HOST_PWD (state, pwd) {
+    state.axios_config.headers.host_pwd = pwd
   },
-  SET_SERVER_DATABASE (state, database) {
-    state.axios_config.headers.server.database = database
+  SET_HOST_DATABASE (state, database) {
+    state.axios_config.headers.database = database
   },
   SET_USER_NAME (state, userName) {
-    state.axios_config.headers.user.name = userName
+    state.axios_config.headers.user_name = userName
   },
   SET_USER_PWD (state, pwd) {
-    state.axios_config.headers.user.pwd = pwd
+    state.axios_config.headers.user_pwd = pwd
   },
   SET_COMPANY_LOGO (state, location) {
     state.company.logo = location
