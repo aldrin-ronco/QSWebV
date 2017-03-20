@@ -10,7 +10,8 @@
           <label for="userName">Nombre de Usuario</label>
           <input type="text"
                  id="userName"
-                 v-model:value="userName"
+                 v-model:value="axios_config.headers.user.user_name"
+                 @input="setUserName($event)"
                  style="text-transform: uppercase"
                  placeholder="Nombre de Usuario"
                  class="form-control"
@@ -20,7 +21,8 @@
           <label for="pwd">Contraseña</label>
           <input type="password"
                  id="pwd"
-                 v-model:value="pwd"
+                 v-model:value="axios_config.headers.user.user_pwd"
+                 @input="setUserPwd($event)"
                  placeholder="Contraseña"
                  class="form-control pwd">
         </div>
@@ -41,9 +43,9 @@
         </button>
       </div>
     </form>
-    <!-- <pre>{{ $data }}</pre>
-    <pre>{{ host }}</pre>
-    <pre>{{ showCompany }}</pre> -->
+    <pre>{{ $data }}</pre>
+    <pre>{{ axios_config }}</pre>
+    <pre>{{ showCompany }}</pre>
   </div>
 </template>
 
@@ -53,8 +55,6 @@ import appConfig from '../../app.config'
 export default {
   data () {
     return {
-      userName: '',
-      pwd: '',
       selected: '',
       databases: [],
       isSubmited: false,
@@ -64,12 +64,14 @@ export default {
   computed: {
     ...mapGetters([
       'host',
+      'axios_config',
       'axios_instance'
     ]),
     shouldEnableComprobar () {
+      let vm = this
       if (this.isSubmited && !this.isSent) { // Si han dado clieck en comprobar pero aun no ha respondido el servidor
         return false
-      } else if (this.userName.trim() && this.pwd.trim()) {
+      } else if (vm.axios_config.headers.user.user_name.trim() && vm.axios_config.headers.user.user_pwd.trim()) {
         return true
       } else {
         return false
@@ -93,6 +95,12 @@ export default {
     }
   },
   methods: {
+    setUserName (evt) {
+      this.$store.commit('SET_USER_NAME', evt.target.value.toUpperCase())
+    },
+    setUserPwd (evt) {
+      this.$store.commit('SET_USER_PWD', evt.target.value)
+    },
     logginCheck (evt) {
       // Como el lamado viene de un button, tuve que hacer esto para evitar el redireccionamiento, casi quedo calvo
       evt.preventDefault()
@@ -103,7 +111,7 @@ export default {
 
       let vm = this // Guardamos la instancia antes de que se pierda
       vm.isSubmited = true // Ha Sido presionado el botón de comprobar, Inicia la espera de respuesta
-      vm.axios_instance.get(`${appConfig.baseUrlWebApi}/login-check`, {timeout: 20000}) // timeout de 20 Segundos, haber si da resultado
+      vm.axios_instance.get(`${appConfig.baseUrlWebApi}/login-check`, {timeout: 30000}) // timeout de 30 Segundos, haber si da resultado
       .then(function (response) {
         response.data.user_profile.databases.forEach(function (db) {
           vm.databases.push({ text: db.DataBaseAlias, value: db.DataBaseName }) // Colocamos todas las bases de datos de este usuario en el array
