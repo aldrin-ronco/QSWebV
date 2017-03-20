@@ -39,7 +39,7 @@ const state = {
 const mutations = {
   SET_HOST_ID (state, id) {
     state.host.id = id
-    state.axios_config.headers.host.host_id
+    state.axios_config.headers.host.host_id = id
   },
   SET_HOST_IP (state, ip) {
     state.host.ip = ip
