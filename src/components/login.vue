@@ -28,7 +28,7 @@
         </div>
         <div class="form-group" v-show="showCompany">
           <label for="dbases">Empresa</label>
-          <select v-model="selected" class="form-control" id="dbases">
+          <select v-model="axios_config.database" class="form-control" id="dbases">
             <option v-for="db in databases" v-bind:value="db.value">
                 {{ db.text }}
             </option>
@@ -55,7 +55,6 @@ import appConfig from '../../app.config'
 export default {
   data () {
     return {
-      selected: '',
       databases: [],
       isSubmited: false,
       isSent: false
@@ -113,13 +112,14 @@ export default {
       vm.isSubmited = true // Ha Sido presionado el botón de comprobar, Inicia la espera de respuesta
       vm.axios_instance.get(`${appConfig.baseUrlWebApi}/login-check`, {timeout: 30000}) // timeout de 30 Segundos, haber si da resultado
       .then(function (response) {
+        console.log(response)
         response.data.user_profile.databases.forEach(function (db) {
           vm.databases.push({ text: db.DataBaseAlias, value: db.DataBaseName }) // Colocamos todas las bases de datos de este usuario en el array
         })
         vm.isSent = true // El Servidor ha respondido, termina la espera
         // Si hay bases de datos configuradas para este usuario
         if (response.data.user_profile.databases.length > 0) {
-          vm.selected = response.data.user_profile.databases[0].DataBaseName // Seleccionamos la primera base de datos de la lista para que se muestre en el desplegable
+          vm.$store.commit('SET_HOST_DATABASE', response.data.user_profile.databases[0].DataBaseName) // Seleccionamos la primera base de datos de la lista para que se muestre en el desplegable
         }
       }, function (error) {
         console.log(error)

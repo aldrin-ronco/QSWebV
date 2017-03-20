@@ -53,6 +53,9 @@ const mutations = {
     state.host.pwd = pwd
     state.axios_config.headers.host.pwd = pwd
   },
+  SET_HOST_DATABASE (state, database) {
+    state.axios_config.headers.host.database = database
+  },
   SET_USER_NAME (state, userName) {
     state.axios_config.headers.user.user_name = userName
   },
