@@ -15,6 +15,7 @@
                  style="text-transform: uppercase"
                  placeholder="Nombre de Usuario"
                  class="form-control"
+                 :disabled="formSubmited"
                  v-focus>
         </div>
         <div class="form-group">
@@ -24,7 +25,8 @@
                  v-model:value="axios_config.headers.user_pwd"
                  @input="setUserPwd($event)"
                  placeholder="Contraseña"
-                 class="form-control pwd">
+                 class="form-control pwd"
+                 :disabled="formSubmited">
         </div>
         <div class="form-group" v-show="showCompany">
           <label for="dbases">Empresa</label>
@@ -73,6 +75,9 @@ export default {
       'axios_config',
       'axios_instance'
     ]),
+    formSubmited () {
+      return this.isSubmited
+    },
     shouldEnableComprobar () {
       let vm = this
       // console.log(vm.axios_config.headers.server.user)
@@ -124,7 +129,7 @@ export default {
       vm.isSubmited = true // Ha Sido presionado el botón de comprobar, Inicia la espera de respuesta
       vm.axios_instance.get(`${appConfig.baseUrlWebApi}/login-check`, {timeout: 30000}) // timeout de 30 Segundos, haber si da resultado
       .then(function (response) {
-        vm.isSent = true // El Servidor ha respondido, termina la espera
+        vm.isSent = true // El Servidor ha respondido, termina la espera (Spinner)
         console.log(response)
         if (response.logged) {
           response.data.user_profile.databases.forEach(function (db) {
@@ -135,8 +140,11 @@ export default {
             vm.$store.commit('SET_HOST_DATABASE', response.data.user_profile.databases[0].DataBaseName) // Seleccionamos la primera base de datos de la lista para que se muestre en el desplegable
           }
         } else {
-          vm.loggin_error = true
-          setInterval(() => { vm.loggin_error = false }, 4000)
+          vm.loggin_error = true // Controla si las credenciales no fueron exitosas (Activa mensaje de contraseña o usuario errado)
+          setInterval(() => {
+            vm.loggin_error = false
+            vm.isSubmited = false // Vuelve a habilitar los controles para usuario y contraseña
+          }, 4000)
         }
       }, function (error) {
         console.log(error)
