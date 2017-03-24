@@ -102,7 +102,7 @@ export default {
     buttonStatusMsg () {
       if (this.isSubmited && !this.isSent) {
         return 'Comprobando'
-      } else if (this.isSent) {
+      } else if (this.isSent && !this.loggin_error) {
         return 'Iniciar Sesión'
       } else {
         return 'Comprobar'
