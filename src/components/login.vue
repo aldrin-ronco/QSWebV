@@ -143,8 +143,8 @@ export default {
           }
         } else {
           vm.loggin_error = true // Controla si las credenciales no fueron exitosas (Activa mensaje de contraseña o usuario errado)
+          vm.isSent = false // Reseteamos variable para controlar nuevo intento
           setInterval(() => {
-            vm.isSent = false // Reseteamos variable para controlar nuevo intento
             vm.isSubmited = false // Vuelve a habilitar los controles para usuario y contraseña
             vm.loggin_error = false
           }, 4000)
