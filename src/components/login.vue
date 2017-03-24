@@ -153,7 +153,9 @@ export default {
             vm.isSubmited = false // Vuelve a habilitar los controles para usuario y contraseña
             vm.isSent = false // El Servidor ha respondido, termina la espera (Spinner)
             vm.loggin_error = false
-            $('#pwd').focus()
+            vm.$nextTick(() => {
+              $('#pwd').focus()
+            })
           }, 4000)
         }
       }, function (error) {
