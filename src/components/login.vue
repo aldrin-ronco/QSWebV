@@ -10,6 +10,7 @@
           <label for="userName">Nombre de Usuario</label>
           <input type="text"
                  id="userName"
+                 v-el:userNameInput
                  v-model:value="axios_config.headers.user_name"
                  @input="setUserName($event)"
                  style="text-transform: uppercase"
@@ -22,6 +23,7 @@
           <label for="pwd">Contraseña</label>
           <input type="password"
                  id="pwd"
+                 v-el:pwdInput
                  v-model:value="axios_config.headers.user_pwd"
                  @input="setUserPwd($event)"
                  placeholder="Contraseña"
@@ -151,6 +153,7 @@ export default {
             vm.isSubmited = false // Vuelve a habilitar los controles para usuario y contraseña
             vm.isSent = false // El Servidor ha respondido, termina la espera (Spinner)
             vm.loggin_error = false
+            vm.$els.userNameInput.focus()
           }, 4000)
         }
       }, function (error) {
