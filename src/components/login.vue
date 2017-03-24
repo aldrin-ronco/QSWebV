@@ -34,13 +34,19 @@
             </option>
           </select>
         </div>
-        <button name="btnComprobar"
-                class="btn btn-primary"
-                :disabled="!shouldEnableComprobar"
-                @click="logginCheck($event)">
-                <span :class="{ 'glyphicon': isSubmited && !isSent, 'glyphicon-refresh': isSubmited && !isSent, spinning: isSubmited && !isSent }"></span>
-                {{ buttonStatusMsg }}
-        </button>
+        <div class="isa_warning" style="border-radius:.5em;box-shadow:1px 1px 3px #888;" v-show="loggin_error">
+          <i class="fa fa-warning"></i>
+          usuario o contraseña incorrecto
+        </div>
+        <div class="flex-container">
+          <button name="btnComprobar"
+            class="btn btn-primary flex-item"
+            :disabled="!shouldEnableComprobar"
+            @click="logginCheck($event)">
+            <span :class="{ 'glyphicon': isSubmited && !isSent, 'glyphicon-refresh': isSubmited && !isSent, spinning: isSubmited && !isSent }"></span>
+            {{ buttonStatusMsg }}
+          </button>
+        </div>
       </div>
     </form>
     <pre>{{ $data }}</pre>
@@ -57,7 +63,8 @@ export default {
     return {
       databases: [],
       isSubmited: false,
-      isSent: false
+      isSent: false,
+      loggin_error: false
     }
   },
   computed: {
@@ -114,14 +121,19 @@ export default {
       vm.isSubmited = true // Ha Sido presionado el botón de comprobar, Inicia la espera de respuesta
       vm.axios_instance.get(`${appConfig.baseUrlWebApi}/login-check`, {timeout: 30000}) // timeout de 30 Segundos, haber si da resultado
       .then(function (response) {
-        console.log(response)
-        response.data.user_profile.databases.forEach(function (db) {
-          vm.databases.push({ text: db.DataBaseAlias, value: db.DataBaseName }) // Colocamos todas las bases de datos de este usuario en el array
-        })
         vm.isSent = true // El Servidor ha respondido, termina la espera
-        // Si hay bases de datos configuradas para este usuario
-        if (response.data.user_profile.databases.length > 0) {
-          vm.$store.commit('SET_HOST_DATABASE', response.data.user_profile.databases[0].DataBaseName) // Seleccionamos la primera base de datos de la lista para que se muestre en el desplegable
+        console.log(response)
+        if (response.logged) {
+          response.data.user_profile.databases.forEach(function (db) {
+            vm.databases.push({ text: db.DataBaseAlias, value: db.DataBaseName }) // Colocamos todas las bases de datos de este usuario en el array
+          })
+          // Si hay bases de datos configuradas para este usuario
+          if (response.data.user_profile.databases.length > 0) {
+            vm.$store.commit('SET_HOST_DATABASE', response.data.user_profile.databases[0].DataBaseName) // Seleccionamos la primera base de datos de la lista para que se muestre en el desplegable
+          }
+        } else {
+          this.loggin_error = true
+          setInterval(() => { this.loggin_error = false }, 2000)
         }
       }, function (error) {
         console.log(error)
@@ -150,8 +162,11 @@ h2 {
   margin-top: 40px;
   max-width: 400px;
 }
-.btn-primary {
-  width: 370px;
+.flex-container{
+  display: flex;
+}
+.flex-item {
+  flex-grow: 1;
 }
 .glyphicon.spinning {
     animation: spin 1s infinite linear;
