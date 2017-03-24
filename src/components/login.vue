@@ -135,7 +135,7 @@ export default {
       vm.axios_instance.get(`${appConfig.baseUrlWebApi}/login-check`, {timeout: 30000}) // timeout de 30 Segundos, haber si da resultado
       .then(function (response) {
         console.log(response)
-        if (response.logged) {
+        if (response.data.logged) {
           vm.isSent = true // El Servidor ha respondido, termina la espera (Spinner)
           response.data.user_profile.databases.forEach(function (db) {
             vm.databases.push({ text: db.DataBaseAlias, value: db.DataBaseName }) // Colocamos todas las bases de datos de este usuario en el array
