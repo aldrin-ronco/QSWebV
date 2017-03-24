@@ -131,9 +131,9 @@ export default {
       vm.isSubmited = true // Ha Sido presionado el botón de comprobar, Inicia la espera de respuesta
       vm.axios_instance.get(`${appConfig.baseUrlWebApi}/login-check`, {timeout: 30000}) // timeout de 30 Segundos, haber si da resultado
       .then(function (response) {
-        vm.isSent = true // El Servidor ha respondido, termina la espera (Spinner)
         console.log(response)
         if (response.logged) {
+          vm.isSent = true // El Servidor ha respondido, termina la espera (Spinner)
           response.data.user_profile.databases.forEach(function (db) {
             vm.databases.push({ text: db.DataBaseAlias, value: db.DataBaseName }) // Colocamos todas las bases de datos de este usuario en el array
           })
@@ -144,8 +144,9 @@ export default {
         } else {
           vm.loggin_error = true // Controla si las credenciales no fueron exitosas (Activa mensaje de contraseña o usuario errado)
           setInterval(() => {
-            vm.loggin_error = false
+            vm.isSent = false // Reseteamos variable para controlar nuevo intento
             vm.isSubmited = false // Vuelve a habilitar los controles para usuario y contraseña
+            vm.loggin_error = false
           }, 4000)
         }
       }, function (error) {
