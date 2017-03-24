@@ -147,7 +147,7 @@ export default {
         } else {
           vm.loggin_error = true // Controla si las credenciales no fueron exitosas (Activa mensaje de contraseña o usuario errado)
           vm.isSent = true // Reseteamos variable para controlar nuevo intento
-          setInterval(() => {
+          setTimeout(() => {
             vm.isSubmited = false // Vuelve a habilitar los controles para usuario y contraseña
             vm.isSent = false // El Servidor ha respondido, termina la espera (Spinner)
             vm.loggin_error = false
