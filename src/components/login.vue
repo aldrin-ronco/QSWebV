@@ -51,9 +51,9 @@
         </div>
       </div>
     </form>
-    <pre>{{ $data }}</pre>
+    <!-- <pre>{{ $data }}</pre>
     <pre>{{ axios_config }}</pre>
-    <pre>{{ showCompany }}</pre>
+    <pre>{{ showCompany }}</pre> -->
   </div>
 </template>
 
