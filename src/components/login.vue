@@ -136,7 +136,7 @@ export default {
           }
         } else {
           vm.loggin_error = true
-          setInterval(() => { vm.loggin_error = false }, 2000)
+          setInterval(() => { vm.loggin_error = false }, 4000)
         }
       }, function (error) {
         console.log(error)
