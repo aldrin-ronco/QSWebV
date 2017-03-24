@@ -84,7 +84,9 @@ export default {
       // console.log(vm.axios_config.headers)
       if (this.isSubmited && !this.isSent) { // Si han dado clieck en comprobar pero aun no ha respondido el servidor
         return false
-      } else if (vm.axios_config.headers.user_name.trim() && vm.axios_config.headers.user_pwd.trim()) {
+      } else if (this.loggin_error) { // Si se está mostrando el mensaje de usuario o contraseña incorrecta
+        return false
+      } else if (vm.axios_config.headers.user_name.trim() && vm.axios_config.headers.user_pwd.trim()) { // Si hay contenido en usuario & contraseña
         return true
       } else {
         return false
