@@ -34,7 +34,7 @@
             </option>
           </select>
         </div>
-        <div class="isa_warning" style="border-radius:.5em;box-shadow:1px 1px 3px #888;" v-show="loggin_error">
+        <div class="isa_warning" style="border-radius:.5em;box-shadow:1px 1px 3px #888;" v-show="hasLogginErrors">
           <i class="fa fa-warning"></i>
           usuario o contraseña incorrecto
         </div>
@@ -100,6 +100,9 @@ export default {
       } else {
         return 'Comprobar'
       }
+    },
+    hasLogginErrors () {
+      return this.loggin_error
     }
   },
   methods: {
@@ -132,8 +135,8 @@ export default {
             vm.$store.commit('SET_HOST_DATABASE', response.data.user_profile.databases[0].DataBaseName) // Seleccionamos la primera base de datos de la lista para que se muestre en el desplegable
           }
         } else {
-          this.loggin_error = true
-          setInterval(() => { this.loggin_error = false }, 2000)
+          vm.loggin_error = true
+          setInterval(() => { vm.loggin_error = false }, 2000)
         }
       }, function (error) {
         console.log(error)
