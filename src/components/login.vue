@@ -21,7 +21,7 @@
         <div class="form-group">
           <label for="pwd">Contraseña</label>
           <input type="password"
-                 id="pwd"                 
+                 id="pwd"
                  v-model:value="axios_config.headers.user_pwd"
                  @input="setUserPwd($event)"
                  placeholder="Contraseña"
@@ -51,9 +51,11 @@
         </div>
       </div>
     </form>
-    <pre>{{ $data }}</pre>
-    <pre>{{ axios_config }}</pre>
-    <pre>{{ showCompany }}</pre>
+    <div v-if="showPre">
+      <pre>{{ $data }}</pre>
+      <pre>{{ axios_config }}</pre>
+      <pre>{{ showCompany }}</pre>
+    </div>
   </div>
 </template>
 
@@ -75,6 +77,9 @@ export default {
       'axios_config',
       'axios_instance'
     ]),
+    showPre () {
+      return (process.env.NODE_ENV === 'development')
+    },
     showSpinner () {
       return this.isSubmited && !this.isSent
     },
@@ -152,7 +157,7 @@ export default {
             vm.isSent = false // El Servidor ha respondido, termina la espera (Spinner)
             vm.loggin_error = false
             vm.$nextTick(() => { // Manipulación de DOM async
-              $('#pwd').focus()
+              $('#pwd').focus() // Si el login falla, retornamos el foco al password, por medio de jQuery ya que no encontré la manera de hacerlo por Vue
             })
           }, 4000)
         }
