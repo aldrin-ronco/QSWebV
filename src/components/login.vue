@@ -10,7 +10,6 @@
           <label for="userName">Nombre de Usuario</label>
           <input type="text"
                  id="userName"
-                 v-el:userNameInput
                  v-model:value="axios_config.headers.user_name"
                  @input="setUserName($event)"
                  style="text-transform: uppercase"
@@ -22,8 +21,7 @@
         <div class="form-group">
           <label for="pwd">Contraseña</label>
           <input type="password"
-                 id="pwd"
-                 v-el:pwdInput
+                 id="pwd"                 
                  v-model:value="axios_config.headers.user_pwd"
                  @input="setUserPwd($event)"
                  placeholder="Contraseña"
@@ -53,9 +51,9 @@
         </div>
       </div>
     </form>
-    <!-- <pre>{{ $data }}</pre>
+    <pre>{{ $data }}</pre>
     <pre>{{ axios_config }}</pre>
-    <pre>{{ showCompany }}</pre> -->
+    <pre>{{ showCompany }}</pre>
   </div>
 </template>
 
@@ -153,7 +151,7 @@ export default {
             vm.isSubmited = false // Vuelve a habilitar los controles para usuario y contraseña
             vm.isSent = false // El Servidor ha respondido, termina la espera (Spinner)
             vm.loggin_error = false
-            vm.$nextTick(() => {
+            vm.$nextTick(() => { // Manipulación de DOM async
               $('#pwd').focus()
             })
           }, 4000)
