@@ -354,7 +354,7 @@ a {
   padding: 30px 30px 30px;
   text-align: center;
   background: white;
-  width: 40%;
+  width: 40em;
 }
 .wrap .login-box h1 {
   margin: 0 auto 30px;
