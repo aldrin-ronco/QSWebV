@@ -12,7 +12,7 @@ export default {
 
 <style>
 @import url('//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css');
-
+@import url('https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,700,700i');
 /*Aplicar control boder-box a el modelo de cajas*/
 /*html {
   box-sizing: border-box;
@@ -76,5 +76,5 @@ padding:12px;
 @-webkit-keyframes spin2 {
     from { -webkit-transform: rotate(0deg); }
     to { -webkit-transform: rotate(360deg); }
-}    
+}
 </style>

@@ -1,253 +1,126 @@
-<template>
-  <div class="wrap background-color-dark index-wrap">
-    <div class="login-box middle-center">
-      <h1><img src="../assets/images/logo.svg" alt=""></h1>
-      <h1><img :src="company.logo" alt=""></h1>
-      <!-- <div class="formField">
-        <label for="">Empresa</label>
-        <div class="box-select">
-          <select name="" id="">
-            <option value="">Acme</option>
-            <option value="">Disney</option>
-          </select>
-        </div>
-      </div> -->
-      <div class="formField">
-        <label for="userName">Nombre de usuario</label>
-        <input type="text"
-               id="userName"
-               v-model:value="axios_config.headers.user_name"
-               @input="setUserName($event)"
-               style="text-transform: uppercase"
-               placeholder="Nombre de Usuario"
-               :disabled="formSubmited"
-               v-focus>
-      </div>
-      <div class="formField">
-        <label for="pwd">Password</label>
-        <input type="password"
-               id="pwd"
-               v-model:value="axios_config.headers.user_pwd"
-               @input="setUserPwd($event)"
-               placeholder="Contraseña"
-               class="pwd"
-               :disabled="formSubmited">
-      </div>
-      <!-- Databases for current user -->
-      <div class="formField" v-show="showCompany">
-        <label for="dbases">Empresa</label>
-        <select v-model="axios_config.headers.database" class="formField" id="dbases">
-          <option v-for="db in databases" v-bind:value="db.value">
-              {{ db.text }}
-          </option>
-        </select>
-      </div>
-      <!-- Warning wrong user or pwd       -->
-      <div class="isa_warning" style="border-radius:.5em;box-shadow:1px 1px 3px #888;" v-show="hasLogginErrors">
-        <i class="fa fa-warning"></i>
-        usuario o contraseña incorrecto
-      </div>
-      <!-- Begin Session -->
-      <div class="formField">
-        <!-- <button name="btnComprobar"
-          class="btn btn-primary"
-          :disabled="!shouldEnableComprobar"
-          @click="logginCheck($event)">
-          <span :class="{ 'glyphicon': isSubmited && !isSent, 'glyphicon-refresh': isSubmited && !isSent, spinning: isSubmited && !isSent }"></span>
-          {{ buttonStatusMsg }}
-        </button> -->
-         <a href="#"
-            class="btn"
-            :disabled="!shouldEnableComprobar"
-            @click="logginCheck($event)">
-            <span :class="{ 'glyphicon': isSubmited && !isSent, 'glyphicon-refresh': isSubmited && !isSent, spinning: isSubmited && !isSent }"></span>
-            {{ buttonStatusMsg }}</a>
-      </div>
-      <!-- <div class="formField">
-        <a href="#">¿Olvidaste la contraseña?</a>
-      </div> -->
-    </div>
-    <div class="copyright">Quality Systems. © 2017 Todos los Derechos Reservados</div>
-    <img class="image-full-screen" src="../assets/images/backIndex.png" alt="">
-    <div v-if="showPre">
-      <pre>{{ $data }}</pre>
-      <pre>{{ axios_config }}</pre>
-      <pre>{{ showCompany }}</pre>
-    </div>
-  </div>
+<template lang="html">
+  <div>
+    <header class="qs-header">
+      <img src="../assets/images/logo-blanco.svg" alt="">
+      <div class="box-slicing">
+            <a href="#">
+                  <img class="rounded" src="../assets/images/user.png" alt="" />
+                  <span>Roberto Romero</span>
+                  <img src="../assets/images/arrow-profile.svg" alt="">
+              </a>
+              <div class="box-maintenance">
+                <button>My account</button>
+                  <button>Logout</button>
+              </div>
+          </div>
+    </header>
 
-  <!-- <div>
-    <img :src="company.logo" alt="" class="logo">
-    <h2><b>Quality WEB</b>
-      <small>Inicia Sesión</small>
-    </h2>
-    <form>
-      <div class="container">
-        <div class="form-group">
-          <label for="userName">Nombre de Usuario</label>
-          <input type="text"
-                 id="userName"
-                 v-model:value="axios_config.headers.user_name"
-                 @input="setUserName($event)"
-                 style="text-transform: uppercase"
-                 placeholder="Nombre de Usuario"
-                 class="form-control"
-                 :disabled="formSubmited"
-                 v-focus>
+    <section>
+      <aside class="main-menu">
+        <a href="#"><img src="../assets/images/icon-dash.svg" alt=""><span>Dashboard</span></a>
+        <div class="box-slicing">
+          <a href="#"><img src="../assets/images/icon-inventario.svg" alt=""><span>Inventario</span><img class="arrow" src="../assets/images/arrow.svg" alt=""></a>
         </div>
-        <div class="form-group">
-          <label for="pwd">Contraseña</label>
-          <input type="password"
-                 id="pwd"
-                 v-model:value="axios_config.headers.user_pwd"
-                 @input="setUserPwd($event)"
-                 placeholder="Contraseña"
-                 class="form-control pwd"
-                 :disabled="formSubmited">
+        <div class="box-slicing">
+          <a href="#"><img src="../assets/images/icon-facturacion.svg" alt="" ><span>Facturación</span><img class="arrow" src="../assets/images/arrow.svg" alt=""></a>
+          <div class="box-maintenance">
+            <div class="second-level">
+                        <a href="#"><span>Parámetros</span><img class="arrow" src="../assets/images/arrow.svg" alt=""></a>
+                        <div class="container">
+                          <a href="#">Entradas, salidas & transferencias entre bodegas</a>
+                          <a href="#">Parametros2</a>
+                          <a href="#">Parametros3</a>
+                        </div>
+                      </div>
+
+                      <div class="second-level">
+                        <a href="#"><span>Entradas, salidas & transferencias entre bodegas</span><img class="arrow" src="../assets/images/arrow.svg" alt=""></a>
+                        <div class="container">
+                          <a href="#">Pedidos1</a>
+                          <a href="#">Pedidos2</a>
+                          <a href="#">Pedidos3</a>
+                        </div>
+                      </div>
+
+                      <div class="second-level">
+                        <a href="#"><span>Consultas</span><img class="arrow" src="assets/images/arrow.svg" alt=""></a>
+                        <div class="container">
+                          <a href="#">Consultas1</a>
+
+                        </div>
+                      </div>
+                  </div>
         </div>
-        <div class="form-group" v-show="showCompany">
-          <label for="dbases">Empresa</label>
-          <select v-model="axios_config.headers.database" class="form-control" id="dbases">
-            <option v-for="db in databases" v-bind:value="db.value">
-                {{ db.text }}
-            </option>
-          </select>
+
+        <div class="box-slicing">
+          <a href="#"><img src="../assets/images/icon-tesoreria.svg" alt=""><span>Tesorería</span><img class="arrow" src="../assets/images/arrow.svg" alt=""></a>
         </div>
-        <div class="isa_warning" style="border-radius:.5em;box-shadow:1px 1px 3px #888;" v-show="hasLogginErrors">
-          <i class="fa fa-warning"></i>
-          usuario o contraseña incorrecto
+        <a href="#"><img src="../assets/images/icon-cartera.svg" alt=""><span>Cartera</span></a>
+        <a href="#"><img src="../assets/images/icon-proveedores.svg" alt=""><span>Proveedores</span></a>
+        <a href="#"><img src="../assets/images/icon-contabilidad.svg" alt=""><span>Contabilidad</span></a>
+        <a href="#"><img src="../assets/images/icon-nomina.svg" alt=""><span>Nomina</span></a>
+        <a href="#"><img src="../assets/images/icon-config.svg" alt=""><span>Configuración</span></a>
+      </aside>
+      <aside class="content">
+
+        <!-- <div class="row align-left">
+          <div class="breadcrumb">
+            <a href="">Facturación</a><span>/ Pedidos</span>
+            <a href="" class="btn btn-pedido"><img       src="../assets/images/more.svg" alt=""><span>Nuevo Pedido</span></a>
+          </div>
+
         </div>
-        <div class="flex-container">
-          <button name="btnComprobar"
-            class="btn btn-primary flex-item"
-            :disabled="!shouldEnableComprobar"
-            @click="logginCheck($event)">
-            <span :class="{ 'glyphicon': isSubmited && !isSent, 'glyphicon-refresh': isSubmited && !isSent, spinning: isSubmited && !isSent }"></span>
-            {{ buttonStatusMsg }}
-          </button>
+
+        <div class="row content-box filter-box">
+          <h2>Filtrar pedidos</h2>
+          <div class="formsFields">
+            <div class="box-border">
+              <a href="" class="icon-btn"><img src="../assets/images/loop.svg" alt=""></a>
+
+              <div class="box-filter-input">
+                <a href="" class="btn btn-filter-text"><span>A Producto Masivo</span><img src="../assets/images/close-more.svg" alt=""></a>
+                <input type="text">
+              </div>
+            </div>
+
+            <div class="box-select">
+              <select name="" id="">
+                <option value="">Almacen</option>
+              </select>
+            </div>
+            <a href="" class="btn btn-filter">Filtrar</a>
+          </div>
         </div>
-      </div>
-    </form>
-    <div v-if="showPre">
-      <pre>{{ $data }}</pre>
-      <pre>{{ axios_config }}</pre>
-      <pre>{{ showCompany }}</pre>
-    </div>
-  </div> -->
+        <div class="row content-box info-box">
+          <header>
+            <h2>Número</h2>
+            <h2 class="large">Tipo</h2>
+            <h2>Cliente</h2>
+            <h2>Almacén</h2>
+            <h2 class="more-large">Vendedor</h2>
+          </header>
+        </div>
+        <div class="row pagination">
+          <a href="" class="first"><img src="../assets/images/arrow-double.svg" alt=""></a>
+          <a href="" class="before"><img src="../assets/images/arrow-only.svg" alt=""></a>
+          <a href="#">1</a>
+          <a href="#">2</a>
+          <a href="#">3</a>
+          <a href="#">4</a>
+          <a href="" class="after"><img src="../assets/images/arrow-only.svg" alt=""></a>
+          <a href="" class="last"><img src="../assets/images/arrow-double.svg" alt=""></a>
+        </div> -->
+      </aside>
+    </section>
+  </div>
 </template>
 
 <script>
-import { mapGetters } from 'vuex'
-import appConfig from '../../app.config'
 export default {
-  data () {
-    return {
-      databases: [],
-      isSubmited: false,
-      isSent: false,
-      loggin_error: false
-    }
-  },
-  computed: {
-    ...mapGetters([
-      'company',
-      'axios_config',
-      'axios_instance'
-    ]),
-    showPre () {
-      return (process.env.NODE_ENV === 'development')
-    },
-    showSpinner () {
-      return this.isSubmited && !this.isSent
-    },
-    formSubmited () {
-      return this.isSubmited
-    },
-    shouldEnableComprobar () {
-      let vm = this
-      // console.log(vm.axios_config.headers.server.user)
-      // console.log(vm.axios_config.headers)
-      if (this.isSubmited && !this.isSent) { // Si han dado clieck en comprobar pero aun no ha respondido el servidor
-        return false
-      } else if (this.loggin_error) { // Si se está mostrando el mensaje de usuario o contraseña incorrecta
-        return false
-      } else if (vm.axios_config.headers.user_name.trim() && vm.axios_config.headers.user_pwd.trim()) { // Si hay contenido en usuario & contraseña
-        return true
-      } else {
-        return false
-      }
-    },
-    showCompany () {
-      if (this.databases.length) {
-        return true
-      } else {
-        return false
-      }
-    },
-    buttonStatusMsg () {
-      if (this.isSubmited && !this.isSent && !this.loggin_error) {
-        return 'Comprobando'
-      } else if (this.isSent && !this.loggin_error) {
-        return 'Iniciar Sesión'
-      } else {
-        return 'Comprobar'
-      }
-    },
-    hasLogginErrors () {
-      return this.loggin_error
-    }
-  },
-  methods: {
-    setUserName (evt) {
-      this.$store.commit('SET_USER_NAME', evt.target.value.toUpperCase())
-    },
-    setUserPwd (evt) {
-      this.$store.commit('SET_USER_PWD', evt.target.value)
-    },
-    logginCheck (evt) {
-      // Como el lamado viene de un button, tuve que hacer esto para evitar el redireccionamiento, casi quedo calvo
-      evt.preventDefault()
-      let vm = this // Guardamos la instancia antes de que se pierda
-      if (this.isSent) { // Iniciar Sessión
-        vm.$router.push('/dashboard')
-      }
-      vm.isSubmited = true // Ha Sido presionado el botón de comprobar, Inicia la espera de respuesta
-      vm.axios_instance.get(`${appConfig.baseUrlWebApi}/login-check`, {timeout: 30000}) // timeout de 30 Segundos, haber si da resultado
-      .then(function (response) {
-        console.log(response)
-        if (response.data.logged) {
-          vm.isSent = true // El Servidor ha respondido, termina la espera (Spinner)
-          response.data.user_profile.databases.forEach(function (db) {
-            vm.databases.push({ text: db.DataBaseAlias, value: db.DataBaseName }) // Colocamos todas las bases de datos de este usuario en el array
-          })
-          // Si hay bases de datos configuradas para este usuario
-          if (response.data.user_profile.databases.length > 0) {
-            vm.$store.commit('SET_HOST_DATABASE', response.data.user_profile.databases[0].DataBaseName) // Seleccionamos la primera base de datos de la lista para que se muestre en el desplegable
-          }
-        } else {
-          vm.loggin_error = true // Controla si las credenciales no fueron exitosas (Activa mensaje de contraseña o usuario errado)
-          vm.isSent = true // Reseteamos variable para controlar nuevo intento
-          setTimeout(() => {
-            vm.isSubmited = false // Vuelve a habilitar los controles para usuario y contraseña
-            vm.isSent = false // El Servidor ha respondido, termina la espera (Spinner)
-            vm.loggin_error = false
-            vm.$nextTick(() => { // Manipulación de DOM async
-              $('#pwd').focus() // Si el login falla, retornamos el foco al password, por medio de jQuery ya que no encontré la manera de hacerlo por Vue
-            })
-          }, 4000)
-        }
-      }, function (error) {
-        console.log(error)
-      })
-      .catch(err => {
-        console.log(err)
-      })
-    }
-  }
 }
 </script>
 
-<style lang="css" scoped>
+<style lang="css">
 .after-and-before {
   content: '';
 }
@@ -408,7 +281,7 @@ header h1 img {
 }
 header .box-slicing {
   float: right;
-  margin-top: 9px;
+  /*margin-top: 9px;*/
 }
 header .box-slicing a {
   height: 100%;
@@ -940,26 +813,10 @@ section aside.content .row.pagination a.last {
     right: 10px !important;
   }
 }
-/*img {
-  display: block;
-  margin: auto;
-  max-width: 300px;
-  max-height: 300px;
-  margin-top: 60px;
-}
-h2 {
-  margin-top: 40px;
-  text-align: center;
-}
-.container {
-  margin-top: 40px;
-  max-width: 400px;
-}
-.flex-container{
+.qs-header {
+  width:100%;
   display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
-.flex-item {
-  flex-grow: 1;
-}
-  }*/
 </style>
