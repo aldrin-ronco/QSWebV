@@ -43,7 +43,7 @@
                       </div>
 
                       <div class="second-level">
-                        <a href="#"><span>Consultas</span><img class="arrow" src="assets/images/arrow.svg" alt=""></a>
+                        <a href="#"><span>Consultas</span><img class="arrow" src="../assets/images/arrow.svg" alt=""></a>
                         <div class="container">
                           <a href="#">Consultas1</a>
 
@@ -117,6 +117,22 @@
 
 <script>
 export default {
+  methods: {
+    created () {
+      let vm = this
+      $('.box-slicing a').click(function (e) {
+        $(vm).siblings().slideToggle(400)
+        $(vm).toggleClass('active')
+      })
+      $('.second-level a').click(function (e) {
+        $(vm).siblings().show()
+        $(vm).toggleClass('active')
+      })
+      $('a[href*=#]').click(function () {
+        return false
+      })
+    }
+  }
 }
 </script>
 
@@ -364,12 +380,12 @@ section aside {
 }
 section aside.main-menu {
   width: 254px;
-  padding: 80px 0 20px;
+  padding: 80px 0 0px;
   background: #EAEDF4;
   position: fixed;
   left: 0;
   top: 0;
-  height: calc(100% -100%);
+  height: calc(100%);
   z-index: 90;
   overflow-y: auto;
 }
