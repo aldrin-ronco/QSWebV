@@ -63,9 +63,9 @@
             <span :class="{ 'glyphicon': isSubmited && !isSent, 'glyphicon-refresh': isSubmited && !isSent, spinning: isSubmited && !isSent }"></span>
             {{ buttonStatusMsg }}</a>
       </div>
-      <div class="formField">
+      <!-- <div class="formField">
         <a href="#">¿Olvidaste la contraseña?</a>
-      </div>
+      </div> -->
     </div>
     <div class="copyright">Quality Systems. © 2017 Todos los Derechos Reservados</div>
     <img class="image-full-screen" src="../assets/images/backIndex.png" alt="">
@@ -330,7 +330,7 @@ a {
   color: #53C7DD;
 }
 .formField {
-  margin-bottom: 10px;
+  margin-bottom: 12px;
 }
 .formField:last-of-type {
   margin-bottom: 0;
@@ -351,10 +351,10 @@ a {
   background: #0F2A45;
 }
 .wrap .login-box {
-  padding: 30px 30px 15px;
+  padding: 30px 30px 30px;
   text-align: center;
   background: white;
-  width: 480px;
+  width: 40%;
 }
 .wrap .login-box h1 {
   margin: 0 auto 30px;
