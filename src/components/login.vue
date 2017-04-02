@@ -354,7 +354,7 @@ a {
   padding: 30px 30px 30px;
   text-align: center;
   background: white;
-  width: 40em;
+  width: 30em;
 }
 .wrap .login-box h1 {
   margin: 0 auto 30px;
@@ -380,6 +380,7 @@ a {
 }
 .wrap .login-box a {
   width: calc(100%);
+  margin-top: 25px;
 }
 .wrap .login-box .box-select {
   width: 100% !important;
