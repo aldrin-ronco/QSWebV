@@ -25,16 +25,16 @@
   	          <ul class="level2">
   	            <li><a href="#"><span>1. PARAMETROS</span><img src="../assets/images/arrow.svg" class="arrow"></a>
   	              <ul class="level3">
-  	                <li><a href="#">1.1 Catálogo de productos & servicios</a></li>
-  	                <li><a href="#">1.2 Definición de transacciones de inventario</a></li>
-  	                <li><a href="#">1.3 Administración de unidades de medida</a></li>
+  	                <li><a href="#">1.1. Catálogo de productos & servicios</a></li>
+  	                <li><a href="#">1.2. Definición de transacciones de inventario</a></li>
+  	                <li><a href="#">1.3. Administración de unidades de medida</a></li>
   	              </ul>
   	            </li>
   	            <li><a href="#">2. PROCESOS</a>
   	              <ul class="level3">
-  	                <li><a href="#">2.1 Entradas, Salidas & Transferencias entre bodegas</a></li>
-  	                <li><a href="#">2.2 Reimpresión de transacciones de inventario</a></li>
-  	                <li><a href="#">2.3 Toma & aplicación de inventario</a></li>
+  	                <li><a href="#">2.1. Entradas, Salidas & Transferencias entre bodegas</a></li>
+  	                <li><a href="#">2.2. Reimpresión de transacciones de inventario</a></li>
+  	                <li><a href="#">2.3. Toma & aplicación de inventario</a></li>
   	              </ul>
   	            </li>
   	            <li><a href="#">CONSULTAS</a></li>
@@ -871,7 +871,7 @@ section aside.content .row.pagination a.last {
   box-sizing: border-box;
 }
 .aside-menu {
-  width: 290px;
+  width: 310px;
   padding-top: 40px;
   background: #EAEDF4;
   position: fixed;
@@ -968,7 +968,7 @@ section aside.content .row.pagination a.last {
 .level3 li a {
   margin: 0;
   font-family: 'calibri', 'Open Sans', sans-serif;
-  font-size: .9em;
+  font-size: 1em;
   color: gray;
 }
 </style>
