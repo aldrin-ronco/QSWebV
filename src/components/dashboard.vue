@@ -879,7 +879,7 @@ section aside.content .row.pagination a.last {
   box-sizing: border-box;
 }
 .aside-menu {
-  width: 320px;
+  width: 22em;
   padding-top: 40px;
   background: #EAEDF4;
   position: fixed;
@@ -995,8 +995,8 @@ section aside.content .row.pagination a.last {
 }
 .level3 li a {
   margin: 0;
-  font-family: 'calibri', 'Open Sans', sans-serif;
-  font-size: 1em;
-  color: gray;
+  font-family: , 'Open Sans', sans-serif;
+  font-size: .85em;
+  color: darken(gray,10);
 }
 </style>
