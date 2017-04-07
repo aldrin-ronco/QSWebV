@@ -16,50 +16,35 @@
     </header>
 
     <section>
-      <aside class="main-menu">
-        <a href="#"><img src="../assets/images/icon-dash.svg" alt=""><span>Dashboard</span></a>
-        <div class="box-slicing">
-          <a href="#"><img src="../assets/images/icon-inventario.svg" alt=""><span>Inventario</span><img class="arrow" src="../assets/images/arrow.svg" alt=""></a>
-        </div>
-        <div class="box-slicing">
-          <a href="#"><img src="../assets/images/icon-facturacion.svg" alt="" ><span>Facturación</span><img class="arrow" src="../assets/images/arrow.svg" alt=""></a>
-          <div class="box-maintenance">
-            <div class="second-level">
-                        <a href="#"><span>Parámetros</span><img class="arrow" src="../assets/images/arrow.svg" alt=""></a>
-                        <div class="container">
-                          <a href="#">Entradas, salidas & transferencias entre bodegas</a>
-                          <a href="#">Parametros2</a>
-                          <a href="#">Parametros3</a>
-                        </div>
-                      </div>
-
-                      <div class="second-level">
-                        <a href="#"><span>Entradas, salidas & transferencias entre bodegas</span><img class="arrow" src="../assets/images/arrow.svg" alt=""></a>
-                        <div class="container">
-                          <a href="#">Pedidos1</a>
-                          <a href="#">Pedidos2</a>
-                          <a href="#">Pedidos3</a>
-                        </div>
-                      </div>
-
-                      <div class="second-level">
-                        <a href="#"><span>Consultas</span><img class="arrow" src="../assets/images/arrow.svg" alt=""></a>
-                        <div class="container">
-                          <a href="#">Consultas1</a>
-
-                        </div>
-                      </div>
-                  </div>
-        </div>
-
-        <div class="box-slicing">
-          <a href="#"><img src="../assets/images/icon-tesoreria.svg" alt=""><span>Tesorería</span><img class="arrow" src="../assets/images/arrow.svg" alt=""></a>
-        </div>
-        <a href="#"><img src="../assets/images/icon-cartera.svg" alt=""><span>Cartera</span></a>
-        <a href="#"><img src="../assets/images/icon-proveedores.svg" alt=""><span>Proveedores</span></a>
-        <a href="#"><img src="../assets/images/icon-contabilidad.svg" alt=""><span>Contabilidad</span></a>
-        <a href="#"><img src="../assets/images/icon-nomina.svg" alt=""><span>Nomina</span></a>
-        <a href="#"><img src="../assets/images/icon-config.svg" alt=""><span>Configuración</span></a>
+      <aside class="aside-menu">
+        <!-- <a href="#"><img src="../assets/images/icon-dash.svg" alt=""><span>Dashboard</span></a> -->
+        <div class="menu">
+  	      <ul class="level1">
+  	        <li>
+  	          <a href="#"><span class="inventario">INVENTARIO</span><img src="../assets/images/arrow.svg" class="arrow"></a>
+  	          <ul class="level2">
+  	            <li><a href="#"><span>1. PARAMETROS</span><img src="../assets/images/arrow.svg" class="arrow"></a>
+  	              <ul class="level3">
+  	                <li><a href="#">1.1 Catálogo de productos & servicios</a></li>
+  	                <li><a href="#">1.2 Definición de transacciones de inventario</a></li>
+  	                <li><a href="#">1.3 Administración de unidades de medida</a></li>
+  	              </ul>
+  	            </li>
+  	            <li><a href="#">2. PROCESOS</a>
+  	              <ul class="level3">
+  	                <li><a href="#">2.1 Entradas, Salidas & Transferencias entre bodegas</a></li>
+  	                <li><a href="#">2.2 Reimpresión de transacciones de inventario</a></li>
+  	                <li><a href="#">2.3 Toma & aplicación de inventario</a></li>
+  	              </ul>
+  	            </li>
+  	            <li><a href="#">CONSULTAS</a></li>
+  	          </ul>
+  	        </li>
+  	        <li><a href="#"><span class="facturacion">FACTURACIÓN</span><img src="../assets/images/arrow.svg" class="arrow"></a></li>
+  	        <li><a href="#"><span class="tesoreria">TESORERIA</span><img src="../assets/images/arrow.svg" class="arrow"></a></li>
+  	        <li><a href="#"><span class="cartera">CARTERA</span><img src="../assets/images/arrow.svg" class="arrow"></a></li>
+  	      </ul>
+  	    </div>
       </aside>
       <aside class="content">
 
@@ -110,6 +95,7 @@
           <a href="" class="after"><img src="../assets/images/arrow-only.svg" alt=""></a>
           <a href="" class="last"><img src="../assets/images/arrow-double.svg" alt=""></a>
         </div> -->
+        <!-- <input type="text" name="password" value="nada" id="pwd"> -->
       </aside>
     </section>
   </div>
@@ -117,16 +103,62 @@
 
 <script>
 export default {
+  mounted () {
+    // $('#pwd').keydown(function () {
+    //   $(this).css('background-color', 'yellow')
+    // })
+    // $('#pwd').keyup(function () {
+    //   $(this).css('background-color', 'white')
+    // })
+    // $('#pwd').mouseover(function () {
+    //   $(this).css('font-size', 20)
+    // })
+    // $('#pwd').mouseout(function () {
+    //   $(this).css('font-size', '1em')
+    // })
+    $('.level1 li').click(function () {
+      // $(this).children('a').children('img').css('transform', 'rotate(90deg)')
+      $(this).children('.level2').children('li').slideToggle(200)
+      // console.log($(this).children('.level2').children('li'))
+    })
+    // $('level2 li').click(function () {
+    //   $(this).children('.level3').children('li').slideToggle(200)
+    // })
+    $('.level2 li').click(function () {
+      // console.log($(this).children('.level3').children('li'))
+      $(this).children('.level3').children('li').slideToggle(200) // Realizo el Slide
+      $(this).children('.level3').children('li').css('display', 'flex') // display Flex para que aparezcan centrados
+    })
+    $('li').click(function (e) {
+      e.stopPropagation()
+    })
+  },
   methods: {
-    created () {
-      let vm = this
+    toggleGroups (e) {
       $('.box-slicing a').click(function (e) {
-        $(vm).siblings().slideToggle(400)
-        $(vm).toggleClass('active')
+        console.log('executing!')
+        // $(e.target).children('a').slideToggle()
+        $(this).siblings().slideToggle(400)
+        // $(this).toggleClass('active')
+        // e.stopPropagation()
+      })
+      // $('.second-level a').click(function (e) {
+      //   $(this).siblings().show()
+      //   $(this).toggleClass('activer')
+      // })
+      $('a[href*="#"]').click(function () {
+        return false
+      })
+    },
+    created () {
+      $('.box-slicing a').click(function (e) {
+        console.log('executing!')
+        $(e.target).siblings().slideToggle(400)
+        $(e.target).toggleClass('active')
       })
       $('.second-level a').click(function (e) {
-        $(vm).siblings().show()
-        $(vm).toggleClass('active')
+        $(e.target).siblings().show()
+        $(e.target).toggleClass('active')
       })
       $('a[href*=#]').click(function () {
         return false
@@ -834,5 +866,109 @@ section aside.content .row.pagination a.last {
   display: flex;
   align-items: center;
   justify-content: space-between;
+}
+* {
+  box-sizing: border-box;
+}
+.aside-menu {
+  width: 290px;
+  padding-top: 40px;
+  background: #EAEDF4;
+  position: fixed;
+  left: 0;
+  top: 0;
+  height: calc(100%);
+  z-index: 90;
+  overflow-y: auto;
+}
+.menu {
+  width: 100%;
+  margin-top: 30px;
+}
+.level1 {
+  padding: 0;
+  position: relative;
+}
+.level1 li {
+  background-color:  #EAEDF4;
+  list-style: none;
+  position: relative;
+}
+.level1 li a:after {
+  content: '';
+  width: 4px;
+  height: 100%;
+  background: #00CCD3;
+  /*z-index: 2;*/
+  position: absolute;
+  top: 0;
+  right: 0;
+  display: none;
+}
+.level1 li a:hover:after {
+  display: block;
+}
+.level1 li a {
+  padding-left: 10px;
+  text-decoration: none;
+  margin: 0;
+  font-family: 'Open Sans', sans-serif;
+  font-size: .8em;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.level1 li a:hover {
+  background: #D6DCE8;
+}
+.level1 li a span.inventario:before {
+  content: url('../assets/images/icon-inventario.svg');
+  vertical-align: -50%;
+  padding: 0 10px 0 0;
+}
+.level1 li a span.facturacion:before {
+  content: url('../assets/images/icon-facturacion.svg');
+  vertical-align: -50%;
+  padding: 0 10px 0 0;
+}
+.level1 li a span.tesoreria:before {
+  content: url('../assets/images/icon-tesoreria.svg');
+  vertical-align: -50%;
+  padding: 0 10px 0 0;
+}
+.level1 li a span.cartera:before {
+  content: url('../assets/images/icon-cartera.svg');
+  vertical-align: -50%;
+  padding: 0 10px 0 0;
+}
+.level2 {
+  padding: 0;
+  width: 100%;
+  position: relative;
+}
+.level2 li {
+  background-color: #b8c2da;
+  display: none;
+  position: relative;
+}
+.level2 li a {
+  color: black;
+}
+.level3 {
+  padding: 0;
+  width: 100%;
+  position: relative;
+}
+.level3 li {
+  background-color: #eaedf4;
+  height: 30px;
+  margin: auto 0 auto;
+  display: none;
+}
+.level3 li a {
+  margin: 0;
+  font-family: 'calibri', 'Open Sans', sans-serif;
+  font-size: .9em;
+  color: gray;
 }
 </style>

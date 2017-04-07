@@ -1,115 +1,147 @@
 <template>
-  <div class="dash-board container">
-    <header id="header_lv_1">
-      <div class="header_lv_1_text">
-        <h1>
-          <strong>
-            Quality WEB
-          </strong>
-          <small>Dash Board</small>
-        </h1>
-      </div>
-      <div class="header_lv_1_img">
-        <img src="http://lorempixel.com/90/90" alt="">
-      </div>
-    </header>
-      <header id="header_lv_2">
-        <nav class="flex-container">
-          <a href="#" class="flex-item">INVENTARIO</a>
-          <a href="#" class="flex-item">TESORERÍA</a>
-          <a href="#" class="flex-item selected">FACTURACIÓN</a>
-          <a href="#" class="flex-item">CARTERA</a>
-          <a href="#" class="flex-item">CONTABILIDAD</a>
-          <a href="#" class="flex-item">NÓMINA</a>
-          <a href="#" class="flex-item">CONFIGURACIÓN</a>
-          <a href="#" class="flex-item">NIIF</a>
-          <a href="#" class="flex-item">PRESUPUESTO</a>
-        </nav>
-      </header>
-  </div>
+    <div class="menu">
+      <ul class="level1">
+        <li>
+          <a href="#"><span class="inventario">INVENTARIO</span><img src="../assets/images/arrow.svg" class="arrow"></a>
+          <ul class="level2">
+            <li><a href="#"><span>1. PARAMETROS</span><img src="../assets/images/arrow.svg" class="arrow"></a>
+              <ul class="level3">
+                <li><a href="#">1.1 Catálogo de productos & servicios</a></li>
+                <li><a href="#">1.2 Definición de transacciones de inventario</a></li>
+                <li><a href="#">1.3 Administración de unidades de medida</a></li>
+              </ul>
+            </li>
+            <li><a href="#">2. PROCESOS</a>
+              <ul class="level3">
+                <li><a href="#">2.1 Entradas, Salidas & Transferencias entre bodegas</a></li>
+                <li><a href="#">2.2 Reimpresión de transacciones de inventario</a></li>
+                <li><a href="#">2.3 Toma & aplicación de inventario</a></li>
+              </ul>
+            </li>
+            <li><a href="#">CONSULTAS</a></li>
+          </ul>
+        </li>
+        <li><a href="#"><span class="facturacion">FACTURACIÓN</span><img src="../assets/images/arrow.svg" class="arrow"></a></li>
+        <li><a href="#"><span class="tesoreria">TESORERIA</span><img src="../assets/images/arrow.svg" class="arrow"></a></li>
+        <li><a href="#"><span class="cartera">CARTERA</span><img src="../assets/images/arrow.svg" class="arrow"></a></li>
+      </ul>
+    </div>
 </template>
 
 <script>
 export default {
+  mounted () {
+    $('.level1 li').click(function () {
+      // $(this).children('a').children('img').css('transform', 'rotate(90deg)')
+      $(this).children('.level2').children('li').slideToggle(200)
+      // console.log($(this).children('.level2').children('li'))
+    })
+    // $('level2 li').click(function () {
+    //   $(this).children('.level3').children('li').slideToggle(200)
+    // })
+    $('.level2 li').click(function () {
+      // console.log($(this).children('.level3').children('li'))
+      $(this).children('.level3').children('li').slideToggle(200) // Realizo el Slide
+      $(this).children('.level3').children('li').css('display', 'flex') // display Flex para que aparezcan centrados
+    })
+    $('li').click(function (e) {
+      e.stopPropagation()
+    })
+  }
 }
 </script>
 
 <style lang="css">
-body {
-background-color: rgba(231,12,43,.5);
+* {
+  box-sizing: border-box;
 }
-#header_lv_1 {
+.menu {
+  width: 100%;
+}
+.level1 {
+  padding: 0;
+  position: relative;
+}
+.level1 li {
+  background-color:  #EAEDF4;
+  list-style: none;
+  position: relative;
+}
+.level1 li a:after {
+  content: '';
+  width: 4px;
+  height: 100%;
+  background: #00CCD3;
+  /*z-index: 2;*/
+  position: absolute;
+  top: 0;
+  right: 0;
+  display: none;
+}
+.level1 li a:hover:after {
+  display: block;
+}
+.level1 li a {
+  padding-left: 10px;
+  text-decoration: none;
+  margin: 0;
+  font-family: 'Open Sans', sans-serif;
+  font-size: .8em;
   display: flex;
-  height: 100px;
   justify-content: space-between;
   align-items: center;
-  /*background-color: #ffffcc;*/
-  padding-left: 10px;
-  margin-top: 10px;
-  /*border-radius: .5em;
-  border: 1px solid silver;*/
-  /*box-shadow: 2px 2px 2px 0px silver;*/
 }
-#header_lv_1 img {
-  border-radius: 50%;
-  padding-right: 5px;
+.level1 li a:hover {
+  background: #D6DCE8;
 }
-#header_lv_1 h1 {
-  font-family: arial;
-  font-size: 4em;
-  text-shadow: 0 1px 0 #ccc,
-                 0 2px 0 #c9c9c9,
-                 0 3px 0 #bbb,
-                 0 4px 0 #b9b9b9,
-                 0 5px 0 #aaa,
-                 0 6px 1px rgba(0,0,0,.1),
-                 0 0 5px rgba(0,0,0,.1),
-                 0 1px 3px rgba(0,0,0,.3),
-                 0 3px 5px rgba(0,0,0,.2),
-                 0 5px 10px rgba(0,0,0,.25),
-                 0 10px 10px rgba(0,0,0,.2),
-                 0 20px 20px rgba(0,0,0,.15);
-  /*text-shadow: 2px 2px 2px rgba(0,0,0,.3);*/
+.level1 li a span.inventario:before {
+  content: url('../assets/images/icon-inventario.svg');
+  vertical-align: -50%;
+  padding: 0 10px 0 0;
 }
-#header_lv_2 nav {
-  /*font-family: tahoma;
-  font-size: 1em;
-  padding: 20px;
-  background: #6699ff;  */
+.level1 li a span.facturacion:before {
+  content: url('../assets/images/icon-facturacion.svg');
+  vertical-align: -50%;
+  padding: 0 10px 0 0;
 }
-.flex-container {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: nowrap;
+.level1 li a span.tesoreria:before {
+  content: url('../assets/images/icon-tesoreria.svg');
+  vertical-align: -50%;
+  padding: 0 10px 0 0;
 }
-.flex-item {
-  flex-grow: 1;
-  font-size: .8em;
-  padding: 10px;
-  background: #6699ff;
-  border: 1px solid transparent;
-  flex-basis: 50px;
-  text-align: center;
-  color: white;
-  margin-top: 10px;
+.level1 li a span.cartera:before {
+  content: url('../assets/images/icon-cartera.svg');
+  vertical-align: -50%;
+  padding: 0 10px 0 0;
 }
-#header_lv_2 nav a:hover {
-  text-decoration: none;
-  color:white;
-  background-color: gray;
+.level2 {
+  padding: 0;
+  width: 100%;
+  position: relative;
 }
-#header_lv_2 nav a:visited {
-  text-decoration: none;
+.level2 li {
+  background-color: #b8c2da;
+  display: none;
+  position: relative;
 }
-#header_lv_2 nav a.selected {
-  font-family: arial;
-  background-color: gray;
-  font-weight: bold;
-  font-size: .8em;
+.level2 li a {
+  color: black;
 }
-#header_lv_2 nav a.selected:hover {
-  text-decoration: none;
-  color:white;
-  background-color: gray;
+.level3 {
+  padding: 0;
+  width: 100%;
+  position: relative;
+}
+.level3 li {
+  background-color: #eaedf4;
+  height: 30px;
+  margin: auto 0 auto;
+  display: none;
+}
+.level3 li a {
+  margin: 0;
+  font-family: 'calibri', 'Open Sans', sans-serif;
+  font-size: .9em;
+  color: gray;
 }
 </style>
