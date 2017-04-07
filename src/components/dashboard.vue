@@ -48,7 +48,10 @@
   	        </li>
   	        <li><a href="#"><span class="facturacion">FACTURACIÓN</span><img src="../assets/images/arrow.svg" class="arrow"></a></li>
   	        <li><a href="#"><span class="tesoreria">TESORERIA</span><img src="../assets/images/arrow.svg" class="arrow"></a></li>
-  	        <li><a href="#"><span class="cartera">CARTERA</span><img src="../assets/images/arrow.svg" class="arrow"></a></li>
+  	        <li><a href="#"><span class="proveedores">PROVEEDORES</span><img src="../assets/images/arrow.svg" class="arrow"></a></li>
+            <li><a href="#"><span class="contabilidad">CONTABILIDAD</span><img src="../assets/images/arrow.svg" class="arrow"></a></li>
+            <li><a href="#"><span class="nomina">NÓMINA</span><img src="../assets/images/arrow.svg" class="arrow"></a></li>
+            <li><a href="#"><span class="config">CONFIGURACIÓN</span><img src="../assets/images/arrow.svg" class="arrow"></a></li>
   	      </ul>
   	    </div>
       </aside>
@@ -943,6 +946,26 @@ section aside.content .row.pagination a.last {
 }
 .level1 li a span.cartera:before {
   content: url('../assets/images/icon-cartera.svg');
+  vertical-align: -30%;
+  padding: 0 10px 0 0;
+}
+.level1 li a span.proveedores:before {
+  content: url('../assets/images/icon-proveedores.svg');
+  vertical-align: -30%;
+  padding: 0 10px 0 0;
+}
+.level1 li a span.contabilidad:before {
+  content: url('../assets/images/icon-contabilidad.svg');
+  vertical-align: -30%;
+  padding: 0 10px 0 0;
+}
+.level1 li a span.nomina:before {
+  content: url('../assets/images/icon-nomina.svg');
+  vertical-align: -30%;
+  padding: 0 10px 0 0;
+}
+.level1 li a span.config:before {
+  content: url('../assets/images/icon-config.svg');
   vertical-align: -30%;
   padding: 0 10px 0 0;
 }
