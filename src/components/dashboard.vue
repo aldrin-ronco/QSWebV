@@ -30,14 +30,20 @@
   	                <li><a href="#">1.3. Administración de unidades de medida</a></li>
   	              </ul>
   	            </li>
-  	            <li><a href="#">2. PROCESOS</a>
+  	            <li><a href="#">2. PROCESOS<img src="../assets/images/arrow.svg" class="arrow"></a>
   	              <ul class="level3">
   	                <li><a href="#">2.1. Entradas, Salidas & Transferencias entre bodegas</a></li>
   	                <li><a href="#">2.2. Reimpresión de transacciones de inventario</a></li>
   	                <li><a href="#">2.3. Toma & aplicación de inventario</a></li>
   	              </ul>
   	            </li>
-  	            <li><a href="#">CONSULTAS</a></li>
+  	            <li><a href="#">3. CONSULTAS<img src="../assets/images/arrow.svg" class="arrow"></a>
+                  <ul class="level3">
+                    <li><a href="#">3.1. Inventario general</a></li>
+                    <li><a href="#">3.2. Movimiento del kardex por producto</a></li>
+                    <li><a href="#">3.3. Balance de inventario</a></li>
+                  </ul>
+                </li>
   	          </ul>
   	        </li>
   	        <li><a href="#"><span class="facturacion">FACTURACIÓN</span><img src="../assets/images/arrow.svg" class="arrow"></a></li>
@@ -329,7 +335,6 @@ header h1 img {
 }
 header .box-slicing {
   float: right;
-  /*margin-top: 9px;*/
 }
 header .box-slicing a {
   height: 100%;
@@ -402,7 +407,7 @@ h2 {
   background: #F4F5F9;
   border-radius: 0;
 }
-section {
+/*section {
   background: #F4F7FA;
 }
 section aside {
@@ -771,8 +776,8 @@ section aside.content .row.pagination a:hover {
 section aside.content .row.pagination a.after,
 section aside.content .row.pagination a.last {
   transform: rotate(180deg);
-}
-@media screen and (max-width: 860px) {
+}*/
+/*@media screen and (max-width: 860px) {
   section aside.main-menu {
     width: calc(84px - 20px);
     overflow: inherit;
@@ -860,7 +865,7 @@ section aside.content .row.pagination a.last {
   section aside.main-menu .box-slicing a img:last-of-type {
     right: 10px !important;
   }
-}
+}*/
 .qs-header {
   width:100%;
   display: flex;
@@ -871,7 +876,7 @@ section aside.content .row.pagination a.last {
   box-sizing: border-box;
 }
 .aside-menu {
-  width: 310px;
+  width: 320px;
   padding-top: 40px;
   background: #EAEDF4;
   position: fixed;
@@ -913,7 +918,7 @@ section aside.content .row.pagination a.last {
   text-decoration: none;
   margin: 0;
   font-family: 'Open Sans', sans-serif;
-  font-size: .8em;
+  font-size: .9em;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -923,22 +928,22 @@ section aside.content .row.pagination a.last {
 }
 .level1 li a span.inventario:before {
   content: url('../assets/images/icon-inventario.svg');
-  vertical-align: -50%;
+  vertical-align: -30%;
   padding: 0 10px 0 0;
 }
 .level1 li a span.facturacion:before {
   content: url('../assets/images/icon-facturacion.svg');
-  vertical-align: -50%;
+  vertical-align: -30%;
   padding: 0 10px 0 0;
 }
 .level1 li a span.tesoreria:before {
   content: url('../assets/images/icon-tesoreria.svg');
-  vertical-align: -50%;
+  vertical-align: -30%;
   padding: 0 10px 0 0;
 }
 .level1 li a span.cartera:before {
   content: url('../assets/images/icon-cartera.svg');
-  vertical-align: -50%;
+  vertical-align: -30%;
   padding: 0 10px 0 0;
 }
 .level2 {
