@@ -17,7 +17,6 @@
 
     <section>
       <aside class="aside-menu">
-        <!-- <a href="#"><img src="../assets/images/icon-dash.svg" alt=""><span>Dashboard</span></a> -->
         <div class="menu">
   	      <ul class="level1">
   	        <li>
@@ -25,9 +24,9 @@
   	          <ul class="level2">
   	            <li><a href="#"><span>1. PARAMETROS</span><img src="../assets/images/arrow.svg" class="arrow"></a>
   	              <ul class="level3">
-  	                <li><a href="#">1.1. Catálogo de productos & servicios</a></li>
+  	                <li><router-link :to="{ path: '/dashboard/catalog' }">1.1. Catálogo de productos & servicios</router-link></li>
   	                <li><a href="#">1.2. Definición de transacciones de inventario</a></li>
-  	                <li><a href="#">1.3. Administración de unidades de medida</a></li>
+  	                <li><router-link :to="{ path: '/dashboard/measurement_units' }">1.3. Administración de unidades de medida</router-link></li>
   	              </ul>
   	            </li>
   	            <li><a href="#">2. PROCESOS<img src="../assets/images/arrow.svg" class="arrow"></a>
@@ -56,55 +55,8 @@
   	    </div>
       </aside>
       <aside class="content">
-
-        <!-- <div class="row align-left">
-          <div class="breadcrumb">
-            <a href="">Facturación</a><span>/ Pedidos</span>
-            <a href="" class="btn btn-pedido"><img       src="../assets/images/more.svg" alt=""><span>Nuevo Pedido</span></a>
-          </div>
-
-        </div>
-
-        <div class="row content-box filter-box">
-          <h2>Filtrar pedidos</h2>
-          <div class="formsFields">
-            <div class="box-border">
-              <a href="" class="icon-btn"><img src="../assets/images/loop.svg" alt=""></a>
-
-              <div class="box-filter-input">
-                <a href="" class="btn btn-filter-text"><span>A Producto Masivo</span><img src="../assets/images/close-more.svg" alt=""></a>
-                <input type="text">
-              </div>
-            </div>
-
-            <div class="box-select">
-              <select name="" id="">
-                <option value="">Almacen</option>
-              </select>
-            </div>
-            <a href="" class="btn btn-filter">Filtrar</a>
-          </div>
-        </div>
-        <div class="row content-box info-box">
-          <header>
-            <h2>Número</h2>
-            <h2 class="large">Tipo</h2>
-            <h2>Cliente</h2>
-            <h2>Almacén</h2>
-            <h2 class="more-large">Vendedor</h2>
-          </header>
-        </div>
-        <div class="row pagination">
-          <a href="" class="first"><img src="../assets/images/arrow-double.svg" alt=""></a>
-          <a href="" class="before"><img src="../assets/images/arrow-only.svg" alt=""></a>
-          <a href="#">1</a>
-          <a href="#">2</a>
-          <a href="#">3</a>
-          <a href="#">4</a>
-          <a href="" class="after"><img src="../assets/images/arrow-only.svg" alt=""></a>
-          <a href="" class="last"><img src="../assets/images/arrow-double.svg" alt=""></a>
-        </div> -->
-        <!-- <input type="text" name="password" value="nada" id="pwd"> -->
+        <router-view></router-view>
+        <p>aqui</p>
       </aside>
     </section>
   </div>
@@ -537,6 +489,8 @@ section aside.main-menu .box-slicing .box-maintenance .second-level .container a
   color: #5B82A8 !important;
   background: #D6DCE8;
 }
+*/
+/*
 section aside.content {
   width: calc(100% - 313px);
   padding: 20px 30px;
@@ -553,6 +507,7 @@ section aside.content .row {
 section aside.content .row .breadcrumb {
   padding: 10px 0;
 }
+
 section aside.content .row .breadcrumb a,
 section aside.content .row .breadcrumb span {
   vertical-align: middle;
@@ -878,6 +833,16 @@ section aside.content .row.pagination a.last {
 * {
   box-sizing: border-box;
 }
+.content {
+  margin-top: 60px;
+  left:22em;
+  top:0;
+  padding: 10px;
+  position: fixed;
+  height: calc(100%);
+  overflow-y: auto;
+  width: 100%;
+}
 .aside-menu {
   width: 22em;
   padding-top: 40px;
@@ -915,9 +880,7 @@ section aside.content .row.pagination a.last {
 }
 .level1 li a:hover:after {
   display: block;
-}
-.level1 li a {
-  padding-left: 10px;
+  padding-left: 5px;
   text-decoration: none;
   margin: 0;
   font-family: 'Open Sans', sans-serif;
