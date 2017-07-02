@@ -129,7 +129,7 @@ export default {
 }
 </script>
 
-<style lang="css">
+<style lang="css" scoped>
 .after-and-before {
   content: '';
 }
