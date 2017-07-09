@@ -63,6 +63,8 @@
 </template>
 
 <script>
+import axios from 'axios'
+import appConfig from './../../app.config.js'
 export default {
   mounted () {
     // $('#pwd').keydown(function () {
@@ -123,6 +125,14 @@ export default {
       })
       $('a[href*=#]').click(function () {
         return false
+      })
+      this.fetchData()
+    },
+    fetchData () {
+      let vm = this
+      axios.get(`${appConfig.baseUrlGoApi}/profile-options`)
+      .then(function (response) {
+        vm.$store.commit('SET_PROFILE_OPTIONS', response)
       })
     }
   }

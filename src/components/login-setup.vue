@@ -11,8 +11,9 @@ export default {
     this.$store.commit('SET_HOST_IP', process.env.NODE_ENV === 'development' ? '190.248.137.122' : this.$route.query.ip)
     this.$store.commit('SET_HOST_USER', process.env.NODE_ENV === 'development' ? 'sa' : this.$route.query.user)
     this.$store.commit('SET_HOST_PWD', process.env.NODE_ENV === 'development' ? 'Qu4l1ty' : this.$route.query.pwd)
-    this.$store.commit('SET_HOST_ID', process.env.NODE_ENV === 'development' ? 61 : this.$route.query.id)
-    this.$store.commit('SET_COMPANY_LOGO', process.env.NODE_ENV === 'development' ? 'https://s3-us-west-2.amazonaws.com/qs.company.logos/logos/logo_61.png' : this.$route.query.logo)
+    this.$store.commit('SET_HOST_ID', process.env.NODE_ENV === 'development' ? 52 : this.$route.query.id)
+    this.$store.commit('SET_HOST_DOMAIN', process.env.NODE_ENV === 'development' ? 'mundial' : this.$route.query.domain)
+    this.$store.commit('SET_COMPANY_LOGO', process.env.NODE_ENV === 'development' ? 'https://s3-us-west-2.amazonaws.com/qs.company.logos/logos/logo_52.bmp' : this.$route.query.logo)
     this.$router.push('/login') // Redirección a ruta de Login
   },
   computed: {

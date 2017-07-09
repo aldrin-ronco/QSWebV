@@ -36,7 +36,7 @@
       <!-- Databases for current user -->
       <div class="formField" v-show="showCompany">
         <label for="dbases">Empresa</label>
-        <select v-model="axios_config.headers.database" class="formField" id="dbases">
+        <select v-model="axios_config.headers.host_database" class="formField" id="dbases">
           <option v-for="db in databases" v-bind:value="db.value">
               {{ db.text }}
           </option>
@@ -139,6 +139,7 @@
 <script>
 import { mapGetters } from 'vuex'
 import appConfig from '../../app.config'
+// import axios from 'axios'
 export default {
   data () {
     return {
@@ -206,13 +207,38 @@ export default {
     },
     logginCheck (evt) {
       // Como el lamado viene de un button, tuve que hacer esto para evitar el redireccionamiento, casi quedo calvo
-      evt.preventDefault()
       let vm = this // Guardamos la instancia antes de que se pierda
+      evt.preventDefault()
       if (this.isSent) { // Iniciar Sessión
         vm.$router.push('/dashboard')
       }
       vm.isSubmited = true // Ha Sido presionado el botón de comprobar, Inicia la espera de respuesta
-      vm.axios_instance.get(`${appConfig.baseUrlWebApi}/login-check`, {timeout: 30000}) // timeout de 30 Segundos, haber si da resultado
+      // console.log(`${appConfig.baseUrlGoApi}/login-check`)
+      // console.log(vm.axios_instance.axios_config)
+      // console.log(vm.axios_instance)
+      // vm.axios_instance.get(`${appConfig.baseUrlWebApi}/login-check`, {timeout: 30000}) // timeout de 30 Segundos, haber si da resultado
+      //
+      // let axIns = axios.create(vm.axios_config)
+      // axIns.get(`${appConfig.baseUrlGoApiLocal}/login-check`)
+      // .then(function (response) {
+      //   console.log(response)
+      // })
+
+      // axios.get(`${appConfig.baseUrlGoApiLocal}/login-check`, {
+      //   baseUrl: appConfig.baseUrlGoApiLocal,
+      //   headers: {
+      //     host_user: 'sa', // Usuario para conectar con la Base de Datos
+      //     host_pwd: 'Qu4l1ty', // Contraseña para conectar con la base de datos
+      //     host_ip: '190.248.137.122', // Dirección IP del servidor
+      //     host_port: 1433, // Puerto
+      //     host_id: 61, // id del host
+      //     host_domain: 'mundial',
+      //     user_name: 'ARONCO', // Usuario de inicio sesión en Quality
+      //     user_pwd: 'ingeniero', // Password de Inicio sessión del usuario
+      //     models: 'config', // Directorio que se va a cargar
+      //     host_database: 'BD_COMERCIAL_ML' // Base de datos a la que se va a conectar
+      //   }})
+      vm.axios_instance.get(`${appConfig.baseUrlGoApiLocal}/login-check`, {timeout: 30000})
       .then(function (response) {
         console.log(response)
         if (response.data.logged) {

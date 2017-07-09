@@ -9,28 +9,36 @@ Vue.use(Vuex)
 
 // the root, initial state object
 const state = {
+  profile_options: [],
   company: {
     logo: ''
   },
   axios_config: {
-    baseUrl: appConfig.baseUrlWebApi,
+    baseUrl: appConfig.baseUrlGoApi,
     headers: {
       host_user: '', // Usuario para conectar con la Base de Datos
       host_pwd: '', // Contraseña para conectar con la base de datos
       host_ip: '', // Dirección IP del servidor
       host_port: 1433, // Puerto
       host_id: 0, // id del host
+      host_domain: '',
       user_name: '', // Usuario de inicio sesión en Quality
       user_pwd: '', // Password de Inicio sessión del usuario
       models: 'config', // Directorio que se va a cargar
-      database: '' // Base de datos a la que se va a conectar
+      host_database: '' // Base de datos a la que se va a conectar
     }
   }
 }
 
 const mutations = {
+  SET_PROFILE_OPTIONS (state, options) {
+    state.profile_options = options
+  },
   SET_HOST_ID (state, id) {
     state.axios_config.headers.host_id = id
+  },
+  SET_HOST_DOMAIN (state, hostDomain) {
+    state.axios_config.headers.host_domain = hostDomain
   },
   SET_HOST_IP (state, ip) {
     state.axios_config.headers.host_ip = ip
@@ -42,7 +50,7 @@ const mutations = {
     state.axios_config.headers.host_pwd = pwd
   },
   SET_HOST_DATABASE (state, database) {
-    state.axios_config.headers.database = database
+    state.axios_config.headers.host_database = database
   },
   SET_USER_NAME (state, userName) {
     state.axios_config.headers.user_name = userName
@@ -64,6 +72,9 @@ const getters = {
   },
   axios_config (state) {
     return state.axios_config
+  },
+  profile_options (state) {
+    return state.profile_options
   }
 }
 
