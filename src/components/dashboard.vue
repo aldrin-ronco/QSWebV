@@ -45,6 +45,7 @@
                 </li>
   	          </ul>
   	        </li>
+
   	        <li><a href="#"><span class="facturacion">FACTURACIÓN</span><img src="../assets/images/arrow.svg" class="arrow"></a></li>
   	        <li><a href="#"><span class="tesoreria">TESORERIA</span><img src="../assets/images/arrow.svg" class="arrow"></a></li>
   	        <li><a href="#"><span class="proveedores">PROVEEDORES</span><img src="../assets/images/arrow.svg" class="arrow"></a></li>
@@ -59,13 +60,18 @@
         <p>aqui</p>
       </aside>
     </section>
+    <pre>{{ profile_options }}</pre>
   </div>
 </template>
 
 <script>
-import axios from 'axios'
+// import axios from 'axios'
 import appConfig from './../../app.config.js'
+import { mapGetters } from 'vuex'
 export default {
+  created () {
+    this.fetchData()
+  },
   mounted () {
     // $('#pwd').keydown(function () {
     //   $(this).css('background-color', 'yellow')
@@ -95,6 +101,12 @@ export default {
     $('li').click(function (e) {
       e.stopPropagation()
     })
+  },
+  computed: {
+    ...mapGetters([
+      'profile_options',
+      'axios_instance'
+    ])
   },
   methods: {
     toggleGroups (e) {
@@ -126,11 +138,12 @@ export default {
       $('a[href*=#]').click(function () {
         return false
       })
-      this.fetchData()
+      // this.fetchData()
     },
     fetchData () {
+      console.log('fetc data called !')
       let vm = this
-      axios.get(`${appConfig.baseUrlGoApi}/profile-options`)
+      vm.axios_instance.get(`${appConfig.baseUrlGoApi}/profile-options`)
       .then(function (response) {
         vm.$store.commit('SET_PROFILE_OPTIONS', response)
       })
