@@ -238,7 +238,7 @@ export default {
       //     models: 'config', // Directorio que se va a cargar
       //     host_database: 'BD_COMERCIAL_ML' // Base de datos a la que se va a conectar
       //   }})
-      vm.axios_instance.get(`${appConfig.baseUrlGoApiLocal}/login-check`, {timeout: 30000})
+      vm.axios_instance.get(`${appConfig.baseUrlGoApi}/login-check`, {timeout: 30000})
       .then(function (response) {
         console.log(response)
         if (response.data.logged) {
