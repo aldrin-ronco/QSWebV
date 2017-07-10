@@ -66,8 +66,8 @@
 
 <script>
 // import axios from 'axios'
-import appConfig from './../../app.config.js'
 import { mapGetters } from 'vuex'
+import tools from './../helpers/tools.js'
 export default {
   created () {
     this.fetchData()
@@ -141,11 +141,11 @@ export default {
       // this.fetchData()
     },
     fetchData () {
-      console.log('fetc data called !')
       let vm = this
-      vm.axios_instance.get(`${appConfig.baseUrlGoApi}/profile-options`)
+      vm.axios_instance.get(tools.getBaseApi('/profile-options'), {timeout: 30000})
       .then(function (response) {
         vm.$store.commit('SET_PROFILE_OPTIONS', response)
+        console.log(response)
       })
     }
   }

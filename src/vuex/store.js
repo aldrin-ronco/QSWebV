@@ -14,7 +14,7 @@ const state = {
     logo: ''
   },
   axios_config: {
-    baseUrl: appConfig.baseUrlGoApi,
+    baseUrl: process.env.NODE_ENV === 'development' ? appConfig.baseUrlGoApiLocal : appConfig.baseUrlGoApi,
     headers: {
       host_user: '', // Usuario para conectar con la Base de Datos
       host_pwd: '', // Contraseña para conectar con la base de datos

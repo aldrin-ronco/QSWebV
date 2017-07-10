@@ -138,7 +138,7 @@
 
 <script>
 import { mapGetters } from 'vuex'
-import appConfig from '../../app.config'
+import tools from './../helpers/tools.js'
 // import axios from 'axios'
 export default {
   data () {
@@ -215,7 +215,7 @@ export default {
 
       vm.isSubmited = true // Ha Sido presionado el botón de comprobar, Inicia la espera de respuesta
 
-      vm.axios_instance.get(`${appConfig.baseUrlGoApi}/login-check`, {timeout: 30000}) // timeout de 30 Segundos, haber si da resultado
+      vm.axios_instance.get(tools.getBaseApi('/login-check'), {timeout: 30000}) // timeout de 30 Segundos, haber si da resultado
       .then(function (response) {
         console.log(response)
         if (response.data.logged) {
