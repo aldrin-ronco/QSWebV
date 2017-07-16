@@ -211,6 +211,7 @@ export default {
       evt.preventDefault()
       if (this.isSent) { // Iniciar Sessión
         vm.$router.push('/dashboard')
+        return
       }
 
       vm.isSubmited = true // Ha Sido presionado el botón de comprobar, Inicia la espera de respuesta

@@ -18,7 +18,7 @@
     <section>
       <aside class="aside-menu">
         <div class="menu">
-  	      <ul class="level1">
+  	      <!-- <ul class="level1">
   	        <li>
   	          <a href="#"><span class="inventario">INVENTARIO</span><img src="../assets/images/arrow.svg" class="arrow"></a>
   	          <ul class="level2">
@@ -44,15 +44,42 @@
                   </ul>
                 </li>
   	          </ul>
-  	        </li>
+  	        </li> -->
 
-  	        <li><a href="#"><span class="facturacion">FACTURACIÓN</span><img src="../assets/images/arrow.svg" class="arrow"></a></li>
+            <!-- F4F5F9 -->
+
+
+            <!-- <ul v-for="module in profile_options.modules" class="level1">
+                <li>
+                  <a href="#"><span class="inventario">{{ module.description }}</span><img src="../assets/images/arrow.svg" class="arrow"></a>
+                </li>
+            </ul> -->
+
+
+  	        <!-- <li><a href="#"><span class="facturacion">FACTURACIÓN</span><img src="../assets/images/arrow.svg" class="arrow"></a></li>
   	        <li><a href="#"><span class="tesoreria">TESORERIA</span><img src="../assets/images/arrow.svg" class="arrow"></a></li>
   	        <li><a href="#"><span class="proveedores">PROVEEDORES</span><img src="../assets/images/arrow.svg" class="arrow"></a></li>
             <li><a href="#"><span class="contabilidad">CONTABILIDAD</span><img src="../assets/images/arrow.svg" class="arrow"></a></li>
             <li><a href="#"><span class="nomina">NÓMINA</span><img src="../assets/images/arrow.svg" class="arrow"></a></li>
-            <li><a href="#"><span class="config">CONFIGURACIÓN</span><img src="../assets/images/arrow.svg" class="arrow"></a></li>
-  	      </ul>
+            <li><a href="#"><span class="config">CONFIGURACIÓN</span><img src="../assets/images/arrow.svg" class="arrow"></a></li> -->
+  	      <!-- </ul> -->
+
+          <ul v-for="module in profile_options.modules" class="level1">
+              <li>
+                <a href="#"><span v-bind:class="module.code">{{ module.description }}</span><img src="../assets/images/arrow.svg" class="arrow"></a>
+                <ul class="level2">
+                    <li v-for="group in module.groups">
+                        <a href="#"><span>{{ group.description }}</span><img src="../assets/images/arrow.svg" class="arrow"></a>
+                        <ul class="level3">
+                          <li v-for="option1 in group.options">
+                            <router-link :to="{ path: '/dashboard/catalog' }">{{ option1.description }}</router-link>
+                          </li>
+                        </ul>
+                    </li>
+                </ul>
+              </li>
+          </ul>
+
   	    </div>
       </aside>
       <aside class="content">
@@ -60,7 +87,7 @@
         <p>aqui</p>
       </aside>
     </section>
-    <pre>{{ profile_options }}</pre>
+    <!-- <pre>{{ profile_options }}</pre> -->
   </div>
 </template>
 
@@ -73,34 +100,35 @@ export default {
     this.fetchData()
   },
   mounted () {
-    // $('#pwd').keydown(function () {
-    //   $(this).css('background-color', 'yellow')
+    // // $('#pwd').keydown(function () {
+    // //   $(this).css('background-color', 'yellow')
+    // // })
+    // // $('#pwd').keyup(function () {
+    // //   $(this).css('background-color', 'white')
+    // // })
+    // // $('#pwd').mouseover(function () {
+    // //   $(this).css('font-size', 20)
+    // // })
+    // // $('#pwd').mouseout(function () {
+    // //   $(this).css('font-size', '1em')
+    // // })
+    // $('.level1 li').click(function () {
+    //   // $(this).children('a').children('img').css('transform', 'rotate(90deg)')
+    //   $(this).children('.level2').children('li').slideToggle(200)
+    //   console.log('executig')
+    //   // console.log($(this).children('.level2').children('li'))
     // })
-    // $('#pwd').keyup(function () {
-    //   $(this).css('background-color', 'white')
+    // // $('level2 li').click(function () {
+    // //   $(this).children('.level3').children('li').slideToggle(200)
+    // // })
+    // $('.level2 li').click(function () {
+    //   // console.log($(this).children('.level3').children('li'))
+    //   $(this).children('.level3').children('li').slideToggle(200) // Realizo el Slide
+    //   $(this).children('.level3').children('li').css('display', 'flex') // display Flex para que aparezcan centrados
     // })
-    // $('#pwd').mouseover(function () {
-    //   $(this).css('font-size', 20)
+    // $('li').click(function (e) {
+    //   e.stopPropagation()
     // })
-    // $('#pwd').mouseout(function () {
-    //   $(this).css('font-size', '1em')
-    // })
-    $('.level1 li').click(function () {
-      // $(this).children('a').children('img').css('transform', 'rotate(90deg)')
-      $(this).children('.level2').children('li').slideToggle(200)
-      // console.log($(this).children('.level2').children('li'))
-    })
-    // $('level2 li').click(function () {
-    //   $(this).children('.level3').children('li').slideToggle(200)
-    // })
-    $('.level2 li').click(function () {
-      // console.log($(this).children('.level3').children('li'))
-      $(this).children('.level3').children('li').slideToggle(200) // Realizo el Slide
-      $(this).children('.level3').children('li').css('display', 'flex') // display Flex para que aparezcan centrados
-    })
-    $('li').click(function (e) {
-      e.stopPropagation()
-    })
   },
   computed: {
     ...mapGetters([
@@ -110,42 +138,62 @@ export default {
   },
   methods: {
     toggleGroups (e) {
-      $('.box-slicing a').click(function (e) {
-        console.log('executing!')
-        // $(e.target).children('a').slideToggle()
-        $(this).siblings().slideToggle(400)
-        // $(this).toggleClass('active')
-        // e.stopPropagation()
-      })
-      // $('.second-level a').click(function (e) {
-      //   $(this).siblings().show()
-      //   $(this).toggleClass('activer')
+      // $('.box-slicing a').click(function (e) {
+      //   console.log('toogle group!')
+      //   // $(e.target).children('a').slideToggle()
+      //   $(this).siblings().slideToggle(400)
+      //   // $(this).toggleClass('active')
+      //   // e.stopPropagation()
       // })
-      $('a[href*="#"]').click(function () {
-        return false
-      })
+      // // $('.second-level a').click(function (e) {
+      // //   $(this).siblings().show()
+      // //   $(this).toggleClass('activer')
+      // // })
+      // $('a[href*="#"]').click(function () {
+      //   return false
+      // })
     },
     created () {
-      $('.box-slicing a').click(function (e) {
-        console.log('executing!')
-        $(e.target).siblings().slideToggle(400)
-        $(e.target).toggleClass('active')
-      })
-      $('.second-level a').click(function (e) {
-        $(e.target).siblings().show()
-        $(e.target).toggleClass('active')
-      })
-      $('a[href*=#]').click(function () {
-        return false
-      })
+      // $('.box-slicing a').click(function (e) {
+      //   console.log('executing!')
+      //   $(e.target).siblings().slideToggle(400)
+      //   $(e.target).toggleClass('active')
+      // })
+      // $('.second-level a').click(function (e) {
+      //   $(e.target).siblings().show()
+      //   $(e.target).toggleClass('active')
+      // })
+      // $('a[href*=#]').click(function () {
+      //   return false
+      // })
       // this.fetchData()
     },
     fetchData () {
       let vm = this
       vm.axios_instance.get(tools.getBaseApi('/profile-options'), {timeout: 30000})
       .then(function (response) {
-        vm.$store.commit('SET_PROFILE_OPTIONS', response)
-        console.log(response)
+        vm.$store.commit('SET_PROFILE_OPTIONS', response.data)
+        // console.log(response.data)
+        setTimeout(function () {
+          console.log('inicializando menu!')
+          $('.level1 li').click(function () {
+            // $(this).children('a').children('img').css('transform', 'rotate(90deg)')
+            $(this).children('.level2').children('li').slideToggle(200)
+            console.log('executig')
+            // console.log($(this).children('.level2').children('li'))
+          })
+          // $('level2 li').click(function () {
+          //   $(this).children('.level3').children('li').slideToggle(200)
+          // })
+          $('.level2 li').click(function () {
+            // console.log($(this).children('.level3').children('li'))
+            $(this).children('.level3').children('li').slideToggle(200) // Realizo el Slide
+            $(this).children('.level3').children('li').css('display', 'flex') // display Flex para que aparezcan centrados
+          })
+          $('li').click(function (e) {
+            e.stopPropagation()
+          })
+        }, 3000)
       })
     }
   }
@@ -915,42 +963,42 @@ section aside.content .row.pagination a.last {
 .level1 li a:hover {
   background: #D6DCE8;
 }
-.level1 li a span.inventario:before {
+.level1 li a span.ALM:before {
   content: url('../assets/images/icon-inventario.svg');
   vertical-align: -30%;
   padding: 0 10px 0 0;
 }
-.level1 li a span.facturacion:before {
+.level1 li a span.VEN:before {
   content: url('../assets/images/icon-facturacion.svg');
   vertical-align: -30%;
   padding: 0 10px 0 0;
 }
-.level1 li a span.tesoreria:before {
+.level1 li a span.TES:before {
   content: url('../assets/images/icon-tesoreria.svg');
   vertical-align: -30%;
   padding: 0 10px 0 0;
 }
-.level1 li a span.cartera:before {
+.level1 li a span.CAR:before {
   content: url('../assets/images/icon-cartera.svg');
   vertical-align: -30%;
   padding: 0 10px 0 0;
 }
-.level1 li a span.proveedores:before {
+.level1 li a span.CXP:before {
   content: url('../assets/images/icon-proveedores.svg');
   vertical-align: -30%;
   padding: 0 10px 0 0;
 }
-.level1 li a span.contabilidad:before {
+.level1 li a span.CNT:before {
   content: url('../assets/images/icon-contabilidad.svg');
   vertical-align: -30%;
   padding: 0 10px 0 0;
 }
-.level1 li a span.nomina:before {
+.level1 li a span.NOM:before {
   content: url('../assets/images/icon-nomina.svg');
   vertical-align: -30%;
   padding: 0 10px 0 0;
 }
-.level1 li a span.config:before {
+.level1 li a span.CFG:before {
   content: url('../assets/images/icon-config.svg');
   vertical-align: -30%;
   padding: 0 10px 0 0;
