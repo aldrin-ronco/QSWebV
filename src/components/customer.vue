@@ -106,14 +106,14 @@ export default {
         vm.pagination = response.data.pagination
       })
     }, 500),
-    paginate: _.debounce(function (pageSize, pageNo, filter) {
+    paginate (pageSize, pageNo, filter) {
       let vm = this
       vm.axios_instance.get(tools.getBaseApi(`/customers?page_size=${pageSize}&page_no=${pageNo}&filter=${filter}`), {timeout: 30000})
       .then(function (response) {
         vm.customers = response.data.data
         vm.pagination = response.data.pagination
       })
-    }, 200)
+    }
   }
 }
 </script>
