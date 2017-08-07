@@ -13,6 +13,7 @@ export default {
 <style>
 @import url('//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css');
 @import url('https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,700,700i');
+@import url('https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Material+Icons');
 /*Aplicar control boder-box a el modelo de cajas*/
 /*html {
   box-sizing: border-box;

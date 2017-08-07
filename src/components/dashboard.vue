@@ -72,7 +72,7 @@
                         <a href="#"><span>{{ group.description }}</span><img src="../assets/images/arrow.svg" class="arrow"></a>
                         <ul class="level3">
                           <li v-for="option1 in group.options">
-                            <router-link :to="{ path: '/dashboard/catalog' }">{{ option1.description }}</router-link>
+                            <router-link :to="{ path: '/dashboard/customer' }">{{ option1.description }}</router-link>
                           </li>
                         </ul>
                     </li>
@@ -84,7 +84,6 @@
       </aside>
       <aside class="content">
         <router-view></router-view>
-        <p>aqui</p>
       </aside>
     </section>
     <!-- <pre>{{ profile_options }}</pre> -->
@@ -100,35 +99,6 @@ export default {
     this.fetchData()
   },
   mounted () {
-    // // $('#pwd').keydown(function () {
-    // //   $(this).css('background-color', 'yellow')
-    // // })
-    // // $('#pwd').keyup(function () {
-    // //   $(this).css('background-color', 'white')
-    // // })
-    // // $('#pwd').mouseover(function () {
-    // //   $(this).css('font-size', 20)
-    // // })
-    // // $('#pwd').mouseout(function () {
-    // //   $(this).css('font-size', '1em')
-    // // })
-    // $('.level1 li').click(function () {
-    //   // $(this).children('a').children('img').css('transform', 'rotate(90deg)')
-    //   $(this).children('.level2').children('li').slideToggle(200)
-    //   console.log('executig')
-    //   // console.log($(this).children('.level2').children('li'))
-    // })
-    // // $('level2 li').click(function () {
-    // //   $(this).children('.level3').children('li').slideToggle(200)
-    // // })
-    // $('.level2 li').click(function () {
-    //   // console.log($(this).children('.level3').children('li'))
-    //   $(this).children('.level3').children('li').slideToggle(200) // Realizo el Slide
-    //   $(this).children('.level3').children('li').css('display', 'flex') // display Flex para que aparezcan centrados
-    // })
-    // $('li').click(function (e) {
-    //   e.stopPropagation()
-    // })
   },
   computed: {
     ...mapGetters([
@@ -138,35 +108,8 @@ export default {
   },
   methods: {
     toggleGroups (e) {
-      // $('.box-slicing a').click(function (e) {
-      //   console.log('toogle group!')
-      //   // $(e.target).children('a').slideToggle()
-      //   $(this).siblings().slideToggle(400)
-      //   // $(this).toggleClass('active')
-      //   // e.stopPropagation()
-      // })
-      // // $('.second-level a').click(function (e) {
-      // //   $(this).siblings().show()
-      // //   $(this).toggleClass('activer')
-      // // })
-      // $('a[href*="#"]').click(function () {
-      //   return false
-      // })
     },
     created () {
-      // $('.box-slicing a').click(function (e) {
-      //   console.log('executing!')
-      //   $(e.target).siblings().slideToggle(400)
-      //   $(e.target).toggleClass('active')
-      // })
-      // $('.second-level a').click(function (e) {
-      //   $(e.target).siblings().show()
-      //   $(e.target).toggleClass('active')
-      // })
-      // $('a[href*=#]').click(function () {
-      //   return false
-      // })
-      // this.fetchData()
     },
     fetchData () {
       let vm = this
@@ -177,14 +120,9 @@ export default {
         setTimeout(function () {
           console.log('inicializando menu!')
           $('.level1 li').click(function () {
-            // $(this).children('a').children('img').css('transform', 'rotate(90deg)')
             $(this).children('.level2').children('li').slideToggle(200)
             console.log('executig')
-            // console.log($(this).children('.level2').children('li'))
           })
-          // $('level2 li').click(function () {
-          //   $(this).children('.level3').children('li').slideToggle(200)
-          // })
           $('.level2 li').click(function () {
             // console.log($(this).children('.level3').children('li'))
             $(this).children('.level3').children('li').slideToggle(200) // Realizo el Slide
@@ -193,7 +131,7 @@ export default {
           $('li').click(function (e) {
             e.stopPropagation()
           })
-        }, 3000)
+        }, 2000)
       })
     }
   }
@@ -905,14 +843,15 @@ section aside.content .row.pagination a.last {
   box-sizing: border-box;
 }
 .content {
-  margin-top: 60px;
+  margin-top: 70px;
+  margin-bottom: 1em;
+  width: calc(79.6%);
   left:22em;
   top:0;
   padding: 10px;
-  position: fixed;
+  position: relative;
   height: calc(100%);
   overflow-y: auto;
-  width: 100%;
 }
 .aside-menu {
   width: 22em;

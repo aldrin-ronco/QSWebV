@@ -4,8 +4,11 @@
 import Vue from 'vue'
 import App from './App'
 import router from './router'
-import 'bootstrap/dist/css/bootstrap.css'
-import 'bootstrap/dist/css/bootstrap-theme.css'
+import Vuetify from 'vuetify'
+// import 'bootstrap/dist/css/bootstrap.css'
+// import 'bootstrap/dist/css/bootstrap-theme.css'
+import 'vuetify/dist/vuetify.min.css'
+
 // import 'bulma/css/bulma.css'
 
 // import axios from 'axios'
@@ -22,6 +25,9 @@ Vue.directive('focus', {
     el.focus()
   }
 })
+
+// Vuetify
+Vue.use(Vuetify)
 
 /* eslint-disable no-new */
 new Vue({

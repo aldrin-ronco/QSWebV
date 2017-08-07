@@ -67,7 +67,7 @@
         <a href="#">¿Olvidaste la contraseña?</a>
       </div> -->
     </div>
-    <div class="copyright">Quality Systems. © 2017 Todos los Derechos Reservados</div>
+    <div class="copyright">Quality Tech Solutions. © 2017 Todos los Derechos Reservados</div>
     <img class="image-full-screen" src="../assets/images/backIndex.png" alt="">
     <div v-if="showPre">
       <pre>{{ $data }}</pre>

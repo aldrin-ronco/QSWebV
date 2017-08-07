@@ -6,6 +6,7 @@ import login from '@/components/login'
 import dash from '@/components/dash'
 import dashboard from '@/components/dashboard'
 import catalog from '@/components/catalog'
+import customer from '@/components/customer'
 import measurementUnits from '@/components/measurement_units'
 
 Vue.use(Router)
@@ -21,6 +22,10 @@ const routes = [
       {
         path: 'catalog',
         component: catalog
+      },
+      {
+        path: 'customer',
+        component: customer
       },
       {
         path: 'measurement_units',
